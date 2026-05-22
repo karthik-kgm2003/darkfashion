@@ -1,0 +1,434 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { id: product.id },
+    props:  { product },
+  }));
+}
+
+interface Props {
+  product: CollectionEntry<'products'>;
+}
+
+const { product } = Astro.props;
+const { name, price, category, description, image, inStock, tags, sizes, colors, featured } = product.data;
+const base = import.meta.env.BASE_URL;
+
+// Related products (same category, exclude self)
+const allProducts = await getCollection('products');
+const related = allProducts
+  .filter(p => p.data.category === category && p.id !== product.id)
+  .slice(0, 4);
+
+// Format price
+function formatPrice(n: number) {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0,
+  }).format(n);
+}
+
+// Schema.org Product markup
+const schema = {
+  '@context': 'https://schema.org',
+  '@type':    'Product',
+  name,
+  description,
+  image,
+  offers: {
+    '@type':        'Offer',
+    price,
+    priceCurrency:  'INR',
+    availability:   inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+    seller: {
+      '@type': 'Organization',
+      name:    'DARK Fashion & Trends',
+    },
+  },
+};
+---
+
+<MainLayout
+  title={`${name} — DARK Fashion & Trends`}
+  description={description}
+  image={image}
+>
+  <!-- Structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+
+  <!-- ── BREADCRUMB ─────────────────────────────────────────────── -->
+  <nav aria-label="Breadcrumb" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-0">
+    <ol class="flex flex-wrap items-center gap-2 text-xs font-barlow-condensed font-semibold tracking-widest uppercase text-zinc-600">
+      <li><a href={`${base}/`} class="hover:text-red-400 transition-colors">Home</a></li>
+      <li class="text-zinc-700">›</li>
+      <li><a href={`${base}/shop`} class="hover:text-red-400 transition-colors">Shop</a></li>
+      <li class="text-zinc-700">›</li>
+      <li><span class="text-zinc-400">{category}</span></li>
+      <li class="text-zinc-700">›</li>
+      <li><span class="text-white">{name}</span></li>
+    </ol>
+  </nav>
+
+  <!-- ── PRODUCT MAIN ───────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20">
+
+      <!-- ── LEFT: Image pane ────────────────────────────────────── -->
+      <div class="space-y-4">
+        <!-- Main image -->
+        <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden group">
+          <img
+            src={image}
+            alt={name}
+            loading="eager"
+            decoding="async"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <!-- Featured badge -->
+          {featured && (
+            <div class="absolute top-4 left-4">
+              <span class="bg-red-600 text-white text-xs font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-3 py-1.5">
+                Featured
+              </span>
+            </div>
+          )}
+          <!-- Out of stock overlay -->
+          {!inStock && (
+            <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
+              <span class="font-bebas text-4xl text-zinc-400 tracking-widest">Sold Out</span>
+            </div>
+          )}
+        </div>
+
+        <!-- Thumbnail strip placeholder (for multi-image future support) -->
+        <div class="flex gap-3">
+          {[image, image].map((src, i) => (
+            <button
+              class:list={[
+                'relative h-20 w-16 flex-shrink-0 bg-zinc-900 overflow-hidden border-2 transition-all duration-200',
+                i === 0 ? 'border-red-600' : 'border-transparent hover:border-zinc-600',
+              ]}
+            >
+              <img src={src} alt={`View ${i + 1}`} class="h-full w-full object-cover" />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── RIGHT: Product info ─────────────────────────────────── -->
+      <div class="flex flex-col">
+
+        <!-- Category tag -->
+        <div class="flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-red-600"></span>
+          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">
+            {category}
+          </span>
+        </div>
+
+        <!-- Product name -->
+        <h1 class="font-bebas text-4xl sm:text-5xl xl:text-6xl text-white leading-tight tracking-wide mb-4">
+          {name}
+        </h1>
+
+        <!-- Price & stock -->
+        <div class="flex flex-wrap items-center gap-6 mb-8">
+          <span class="font-bebas text-4xl text-white tracking-wider">{formatPrice(price)}</span>
+          <div class="flex items-center gap-2">
+            <span class:list={[
+              'inline-block h-2 w-2 rounded-full',
+              inStock ? 'bg-green-500' : 'bg-red-700',
+            ]}></span>
+            <span class:list={[
+              'font-barlow-condensed text-sm font-semibold tracking-widest uppercase',
+              inStock ? 'text-green-400' : 'text-red-400',
+            ]}>
+              {inStock ? 'In Stock' : 'Out of Stock'}
+            </span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="border-white/5 mb-8" />
+
+        <!-- Size selector -->
+        {sizes && sizes.length > 0 && (
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase text-zinc-300">
+                Select Size
+              </h3>
+              <a href="#" class="text-xs text-red-500 hover:text-red-400 font-barlow-condensed tracking-widest uppercase underline underline-offset-2 transition-colors">
+                Size Guide
+              </a>
+            </div>
+            <div id="size-selector" class="flex flex-wrap gap-2">
+              {sizes.map((size, i) => (
+                <button
+                  class:list={[
+                    'size-btn min-w-[3rem] px-4 py-2.5 text-sm font-barlow-condensed font-semibold tracking-wider uppercase border transition-all duration-200',
+                    i === 0
+                      ? 'border-red-600 bg-red-600/10 text-white'
+                      : 'border-zinc-700 text-zinc-500 hover:border-zinc-400 hover:text-white',
+                  ]}
+                  data-size={size}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Color selector -->
+        {colors && colors.length > 0 && (
+          <div class="mb-8">
+            <h3 class="font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase text-zinc-300 mb-3">
+              Color: <span id="selected-color" class="text-white">{colors[0]}</span>
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {colors.map((color, i) => (
+                <button
+                  class:list={[
+                    'color-btn px-4 py-2 text-xs font-barlow-condensed font-semibold tracking-wider uppercase border transition-all duration-200',
+                    i === 0
+                      ? 'border-red-600 bg-red-600/10 text-white'
+                      : 'border-zinc-700 text-zinc-500 hover:border-zinc-400 hover:text-white',
+                  ]}
+                  data-color={color}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  {color}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Quantity -->
+        <div class="mb-8">
+          <h3 class="font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase text-zinc-300 mb-3">
+            Quantity
+          </h3>
+          <div class="flex items-center gap-0 border border-zinc-700 w-fit">
+            <button
+              id="qty-minus"
+              class="flex items-center justify-center h-11 w-11 text-zinc-400 hover:text-white hover:bg-white/5 transition-colors border-r border-zinc-700"
+              aria-label="Decrease quantity"
+            >
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/>
+              </svg>
+            </button>
+            <span id="qty-display" class="flex items-center justify-center h-11 w-14 font-bebas text-xl text-white tracking-wider">
+              1
+            </span>
+            <button
+              id="qty-plus"
+              class="flex items-center justify-center h-11 w-11 text-zinc-400 hover:text-white hover:bg-white/5 transition-colors border-l border-zinc-700"
+              aria-label="Increase quantity"
+            >
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 mb-8">
+          <button
+            class:list={[
+              'flex-1 flex items-center justify-center gap-2 font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm py-4 transition-all duration-300',
+              inStock
+                ? 'bg-red-600 hover:bg-red-500 text-white hover:shadow-[0_8px_30px_rgba(220,38,38,0.4)] hover:-translate-y-0.5'
+                : 'bg-zinc-800 text-zinc-600 cursor-not-allowed',
+            ]}
+            disabled={!inStock}
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+            </svg>
+            {inStock ? 'Add to Cart' : 'Sold Out'}
+          </button>
+
+          <a
+            href={`https://wa.me/919400000000?text=Hi%20DARK%2C%20I%20want%20to%20order%20${encodeURIComponent(name)}%20(₹${price})`}
+            target="_blank"
+            rel="noreferrer"
+            class="flex-1 flex items-center justify-center gap-2 bg-green-700 hover:bg-green-600 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm py-4 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Order on WhatsApp
+          </a>
+        </div>
+
+        <!-- Wishlist & Share row -->
+        <div class="flex items-center gap-6 mb-8 text-sm text-zinc-500">
+          <button class="flex items-center gap-2 hover:text-red-400 transition-colors font-barlow-condensed tracking-wider uppercase text-xs font-semibold">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
+            </svg>
+            Save
+          </button>
+          <button class="flex items-center gap-2 hover:text-white transition-colors font-barlow-condensed tracking-wider uppercase text-xs font-semibold">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/>
+            </svg>
+            Share
+          </button>
+        </div>
+
+        <!-- Product description -->
+        <div class="border-t border-white/5 pt-8 mb-8">
+          <h2 class="font-bebas text-xl text-white tracking-widest uppercase mb-4">Product Details</h2>
+          <p class="text-zinc-400 text-sm leading-relaxed">{description}</p>
+        </div>
+
+        <!-- Tags -->
+        {tags && tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {tags.map(tag => (
+              <span class="border border-zinc-800 text-zinc-600 text-[10px] font-barlow-condensed font-semibold tracking-[0.2em] uppercase px-3 py-1.5">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <!-- Delivery info accordion -->
+        <div class="mt-8 border-t border-white/5">
+          {[
+            {
+              q: 'Shipping & Delivery',
+              a: 'Free shipping on orders above ₹1,999. Standard delivery across Kerala in 2–4 business days. Pan-India delivery in 5–7 days. Express shipping available at checkout.',
+            },
+            {
+              q: 'Returns & Exchanges',
+              a: 'Easy 7-day returns on unworn, unwashed items with original tags. Exchanges for size can be done within 14 days. WhatsApp us to initiate a return.',
+            },
+            {
+              q: 'Care Instructions',
+              a: 'Machine wash cold, inside out, on a gentle cycle. Do not bleach or tumble dry. Hang to dry in shade. Iron inside out on low heat.',
+            },
+          ].map(({ q, a }) => (
+            <details class="group border-b border-white/5 py-4">
+              <summary class="flex items-center justify-between cursor-pointer list-none">
+                <span class="font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase text-zinc-300">
+                  {q}
+                </span>
+                <svg
+                  class="h-4 w-4 text-zinc-500 transition-transform duration-300 group-open:rotate-45"
+                  fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+              </summary>
+              <p class="mt-3 text-sm text-zinc-500 leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RELATED PRODUCTS ───────────────────────────────────────── -->
+  {related.length > 0 && (
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 border-t border-white/5">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-xs text-zinc-600 font-barlow-condensed tracking-[0.3em] uppercase mb-2">More from {category}</p>
+          <h2 class="font-bebas text-4xl text-white tracking-wide">You May Also Like</h2>
+        </div>
+        <a
+          href={`${base}/shop`}
+          class="hidden sm:inline-flex items-center gap-2 text-xs font-barlow-condensed font-semibold tracking-[0.2em] uppercase text-red-500 hover:text-red-400 transition-colors"
+        >
+          View All
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        {related.map((p) => (
+          <article class="group bg-[#111] border border-white/5 overflow-hidden hover:border-red-600/30 transition-all duration-500">
+            <a href={`${base}/products/${p.id}`} class="block relative aspect-[3/4] overflow-hidden bg-zinc-900">
+              <img
+                src={p.data.image}
+                alt={p.data.name}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </a>
+            <div class="p-3">
+              <a href={`${base}/products/${p.id}`}>
+                <h3 class="font-barlow text-xs font-semibold text-zinc-300 group-hover:text-red-400 transition-colors line-clamp-2 mb-1">{p.data.name}</h3>
+              </a>
+              <span class="font-bebas text-lg text-white tracking-wider">{formatPrice(p.data.price)}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+</MainLayout>
+
+<!-- ── CLIENT SCRIPTS ───────────────────────────────────────────── -->
+<script>
+  // Size selector
+  const sizeBtns = document.querySelectorAll<HTMLButtonElement>('.size-btn');
+  sizeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      sizeBtns.forEach(b => {
+        b.classList.remove('border-red-600', 'bg-red-600/10', 'text-white');
+        b.classList.add('border-zinc-700', 'text-zinc-500');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('border-red-600', 'bg-red-600/10', 'text-white');
+      btn.classList.remove('border-zinc-700', 'text-zinc-500');
+      btn.setAttribute('aria-pressed', 'true');
+    });
+  });
+
+  // Color selector
+  const colorBtns    = document.querySelectorAll<HTMLButtonElement>('.color-btn');
+  const colorDisplay = document.getElementById('selected-color');
+  colorBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      colorBtns.forEach(b => {
+        b.classList.remove('border-red-600', 'bg-red-600/10', 'text-white');
+        b.classList.add('border-zinc-700', 'text-zinc-500');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('border-red-600', 'bg-red-600/10', 'text-white');
+      btn.classList.remove('border-zinc-700', 'text-zinc-500');
+      btn.setAttribute('aria-pressed', 'true');
+      if (colorDisplay) colorDisplay.textContent = btn.dataset.color ?? '';
+    });
+  });
+
+  // Quantity
+  let qty = 1;
+  const display  = document.getElementById('qty-display')!;
+  const minusBtn = document.getElementById('qty-minus')!;
+  const plusBtn  = document.getElementById('qty-plus')!;
+
+  function updateQty(newVal: number) {
+    qty = Math.max(1, Math.min(10, newVal));
+    display.textContent = String(qty);
+  }
+
+  minusBtn?.addEventListener('click', () => updateQty(qty - 1));
+  plusBtn?.addEventListener('click',  () => updateQty(qty + 1));
+</script>

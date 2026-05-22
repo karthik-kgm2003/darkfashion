@@ -1,0 +1,12 @@
+{
+  "name": "DARK Utility Cargo Pant",
+  "price": 2499,
+  "category": "Bottoms",
+  "description": "The signature DARK wide-leg cargo pant engineered for maximum utility and streetwear edge. Six deep pockets with press-stud flaps, adjustable ankle drawstrings, and a relaxed high-rise waistband. Made from a durable ripstop cotton-poly blend that holds its shape through Kerala's climate. Taped seams and contrast stitching define every panel.",
+  "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&q=80",
+  "inStock": true,
+  "tags": ["cargo", "wide-leg", "utility", "ripstop", "streetwear"],
+  "sizes": ["S", "M", "L", "XL", "XXL", "XXXL"],
+  "colors": ["Tactical Black", "Army Green", "Stone Grey"],
+  "featured": true
+}

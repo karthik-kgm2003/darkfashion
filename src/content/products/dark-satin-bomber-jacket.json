@@ -1,0 +1,12 @@
+{
+  "name": "DARK Satin Bomber Jacket",
+  "price": 4299,
+  "category": "Outerwear",
+  "description": "A statement satin bomber jacket with reversible inner lining. One side showcases a deep obsidian satin finish; flip it for a bold blood-red quilted interior. Features embroidered DARK motifs on the back, ribbed cuffs and hem, and two secure side pockets. A signature piece from the DARK Heritage collection, handcrafted in limited runs.",
+  "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80",
+  "inStock": true,
+  "tags": ["bomber", "satin", "reversible", "limited", "heritage"],
+  "sizes": ["S", "M", "L", "XL"],
+  "colors": ["Obsidian / Blood Red"],
+  "featured": true
+}

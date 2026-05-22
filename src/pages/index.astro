@@ -1,0 +1,382 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const allProducts = await getCollection('products');
+
+// Sort: featured first, then alphabetically
+const products = allProducts.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return a.data.name.localeCompare(b.data.name);
+});
+
+// Format INR price
+function formatPrice(price: number) {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0,
+  }).format(price);
+}
+
+const categories = [...new Set(products.map(p => p.data.category))];
+---
+
+<MainLayout
+  title="DARK Fashion & Trends — Premium Streetwear, Padinjarangadi"
+  description="Shop the latest streetwear drops from DARK Fashion & Trends. Oversized tees, cargo pants, bombers and more. Delivered across Kerala."
+>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="relative min-h-[92vh] flex items-center overflow-hidden">
+    <!-- Background layers -->
+    <div class="absolute inset-0 bg-[#070707]"></div>
+    <!-- Noise texture overlay -->
+    <div class="absolute inset-0 opacity-[0.03]"
+      style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px 200px;">
+    </div>
+    <!-- Red glow -->
+    <div class="absolute -top-32 -left-32 h-[600px] w-[600px] rounded-full bg-red-700/10 blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-red-900/8 blur-[100px] pointer-events-none"></div>
+
+    <!-- Grid lines decoration -->
+    <div class="absolute inset-0 opacity-[0.04]"
+      style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 80px 80px;">
+    </div>
+
+    <!-- Hero content -->
+    <div class="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <!-- Eyebrow -->
+        <div class="flex items-center gap-3 mb-8 animate-[fadeUp_0.6s_ease_both]">
+          <span class="h-px w-12 bg-red-600"></span>
+          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">
+            Padinjarangadi, Kerala
+          </span>
+        </div>
+
+        <!-- Main headline -->
+        <h1 class="font-bebas text-[clamp(4rem,14vw,11rem)] leading-[0.88] tracking-wide text-white mb-6 animate-[fadeUp_0.7s_0.1s_ease_both_backwards]">
+          DRESS <br/>
+          <span class="text-stroke-red">THE</span><br/>
+          <span class="text-red-600">DARK</span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="text-base sm:text-lg text-zinc-400 font-barlow font-light leading-relaxed max-w-md mb-10 animate-[fadeUp_0.7s_0.2s_ease_both_backwards]">
+          Premium streetwear crafted for the streets of Kerala.
+          Drop-shoulder cuts, utility silhouettes, and cultural edges — every piece tells a story.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4 animate-[fadeUp_0.7s_0.3s_ease_both_backwards]">
+          <a
+            href="#products"
+            class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_8px_30px_rgba(220,38,38,0.4)]"
+          >
+            Shop New Drops
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href={`${base}/lookbook`}
+            class="inline-flex items-center gap-2 border border-zinc-700 hover:border-white text-zinc-400 hover:text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300"
+          >
+            View Lookbook
+          </a>
+        </div>
+
+        <!-- Stats row -->
+        <div class="flex flex-wrap gap-8 mt-16 animate-[fadeUp_0.7s_0.4s_ease_both_backwards]">
+          {[
+            { val: '500+', label: 'Happy Customers' },
+            { val: '50+',  label: 'Unique Styles'    },
+            { val: '2+',   label: 'Years in Kerala'  },
+          ].map(({ val, label }) => (
+            <div class="flex flex-col">
+              <span class="font-bebas text-3xl text-white tracking-wider">{val}</span>
+              <span class="text-xs text-zinc-500 font-barlow-condensed tracking-widest uppercase">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative right-side vertical text -->
+    <div class="absolute right-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-3 text-zinc-700">
+      <span class="h-20 w-px bg-zinc-700"></span>
+      <span class="font-barlow-condensed text-[10px] tracking-[0.4em] uppercase"
+        style="writing-mode: vertical-rl; text-orientation: mixed;">
+        Dark Fashion & Trends
+      </span>
+      <span class="h-20 w-px bg-zinc-700"></span>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-600 animate-bounce">
+      <span class="text-[10px] font-barlow-condensed tracking-[0.3em] uppercase">Scroll</span>
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── TICKER BAND ────────────────────────────────────────────── -->
+  <div class="relative overflow-hidden bg-red-600 py-3">
+    <div class="flex whitespace-nowrap animate-[ticker_25s_linear_infinite]">
+      {Array.from({ length: 6 }).map(() => (
+        <span class="inline-flex items-center gap-8 font-bebas text-white text-xl tracking-[0.2em] pr-16">
+          NEW DROP &nbsp;·&nbsp; PADINJARANGADI &nbsp;·&nbsp; DARK FASHION &nbsp;·&nbsp;
+          STREETWEAR &nbsp;·&nbsp; KERALA &nbsp;·&nbsp; SHOP NOW &nbsp;·&nbsp;
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- ── CATEGORY PILLS ─────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-4">
+    <div class="flex flex-wrap items-center gap-3">
+      <button
+        class="category-btn active-cat font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase px-5 py-2 border border-red-600 bg-red-600 text-white transition-all duration-200"
+        data-filter="all"
+      >
+        All
+      </button>
+      {categories.map(cat => (
+        <button
+          class="category-btn font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase px-5 py-2 border border-zinc-700 text-zinc-400 hover:border-white hover:text-white transition-all duration-200"
+          data-filter={cat}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── PRODUCTS GRID ──────────────────────────────────────────── -->
+  <section id="products" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 pb-24">
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <p class="text-xs text-zinc-600 font-barlow-condensed tracking-[0.3em] uppercase mb-2">Current Drop</p>
+        <h2 class="font-bebas text-5xl text-white tracking-wide">All Products</h2>
+      </div>
+      <span class="font-barlow-condensed text-sm text-zinc-500 tracking-widest uppercase">
+        {products.length} Items
+      </span>
+    </div>
+
+    <div
+      id="product-grid"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+    >
+      {products.map((product) => {
+        const { name, price, category, image, inStock, featured } = product.data;
+        const href = `${base}/products/${product.id}`;
+
+        return (
+          <article
+            class="product-card group relative bg-[#111] border border-white/5 overflow-hidden hover:border-red-600/40 transition-all duration-500"
+            data-category={category}
+          >
+            <!-- Product image -->
+            <a href={href} class="block relative aspect-[3/4] overflow-hidden bg-zinc-900">
+              <img
+                src={image}
+                alt={name}
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <!-- Overlay on hover -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 flex flex-col gap-2">
+                {featured && (
+                  <span class="bg-red-600 text-white text-[10px] font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-2.5 py-1">
+                    Featured
+                  </span>
+                )}
+                {!inStock && (
+                  <span class="bg-zinc-900/90 text-zinc-400 text-[10px] font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-2.5 py-1 border border-zinc-700">
+                    Sold Out
+                  </span>
+                )}
+              </div>
+
+              <!-- Quick shop overlay -->
+              <div class="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-400 p-3">
+                <a
+                  href={href}
+                  class="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-xs py-3 transition-colors duration-200"
+                >
+                  View Product
+                  <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </a>
+
+            <!-- Product info -->
+            <div class="p-4">
+              <div class="flex items-start justify-between gap-2 mb-1">
+                <a href={href}>
+                  <h3 class="font-barlow font-semibold text-sm text-white leading-snug group-hover:text-red-400 transition-colors duration-200 line-clamp-2">
+                    {name}
+                  </h3>
+                </a>
+              </div>
+              <p class="text-xs text-zinc-600 font-barlow-condensed tracking-widest uppercase mb-3">{category}</p>
+              <div class="flex items-center justify-between">
+                <span class="font-bebas text-xl text-white tracking-wider">{formatPrice(price)}</span>
+                <span class:list={[
+                  'text-[10px] font-barlow-condensed font-semibold tracking-wider uppercase',
+                  inStock ? 'text-green-500' : 'text-zinc-600',
+                ]}>
+                  {inStock ? '● In Stock' : '○ Out of Stock'}
+                </span>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Empty state (shown by JS when filter matches nothing) -->
+    <div id="empty-state" class="hidden py-24 text-center">
+      <p class="font-bebas text-4xl text-zinc-700 mb-2">No products found</p>
+      <p class="text-sm text-zinc-600">Try a different category filter.</p>
+    </div>
+  </section>
+
+  <!-- ── VALUE PROPS ────────────────────────────────────────────── -->
+  <section class="border-t border-b border-white/5 bg-[#0d0d0d]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[
+        {
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>`,
+          title: 'Free Shipping',
+          desc:  'On all orders above ₹1,999 across Kerala and India.',
+        },
+        {
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.042 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"/>`,
+          title: '100% Authentic',
+          desc:  'Every piece is quality-checked before dispatch.',
+        },
+        {
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/>`,
+          title: 'Easy Returns',
+          desc:  '7-day hassle-free returns on unworn items.',
+        },
+        {
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"/>`,
+          title: 'Drop Alerts',
+          desc:  'WhatsApp us to join the DARK drop notification list.',
+        },
+      ].map(({ icon, title, desc }) => (
+        <div class="flex flex-col items-start gap-4">
+          <div class="flex items-center justify-center h-12 w-12 bg-red-600/10 border border-red-600/20 text-red-500">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" set:html={icon}></svg>
+          </div>
+          <div>
+            <h3 class="font-bebas text-xl text-white tracking-wide mb-1">{title}</h3>
+            <p class="text-sm text-zinc-500 leading-relaxed">{desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── NEWSLETTER / CTA ───────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="relative overflow-hidden bg-[#111] border border-white/5 px-8 py-16 sm:px-16 text-center">
+      <div class="absolute -top-16 left-1/2 -translate-x-1/2 h-60 w-60 rounded-full bg-red-600/10 blur-[80px] pointer-events-none"></div>
+      <p class="text-xs text-red-500 font-barlow-condensed font-semibold tracking-[0.3em] uppercase mb-4">Stay in the Loop</p>
+      <h2 class="font-bebas text-5xl sm:text-7xl text-white tracking-wide mb-4">Get Drop Alerts</h2>
+      <p class="text-zinc-500 max-w-md mx-auto text-sm leading-relaxed mb-10">
+        Be the first to know when new streetwear drops land. No spam — just the heat, straight to your WhatsApp.
+      </p>
+      <a
+        href="https://wa.me/919400000000?text=Hey%20DARK%2C%20add%20me%20to%20the%20drop%20list!"
+        target="_blank"
+        rel="noreferrer"
+        class="inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(22,163,74,0.4)]"
+      >
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Join on WhatsApp
+      </a>
+    </div>
+  </section>
+
+</MainLayout>
+
+<!-- ── PAGE STYLES ──────────────────────────────────────────────── -->
+<style>
+  /* Outlined text */
+  .text-stroke-red {
+    color: transparent;
+    -webkit-text-stroke: 2px #dc2626;
+  }
+
+  /* Ticker animation */
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Card fade-up on load */
+  .product-card {
+    animation: fadeUp 0.5s ease both;
+  }
+  .product-card:nth-child(1) { animation-delay: 0.05s; }
+  .product-card:nth-child(2) { animation-delay: 0.10s; }
+  .product-card:nth-child(3) { animation-delay: 0.15s; }
+  .product-card:nth-child(4) { animation-delay: 0.20s; }
+  .product-card:nth-child(5) { animation-delay: 0.25s; }
+  .product-card:nth-child(6) { animation-delay: 0.30s; }
+  .product-card:nth-child(7) { animation-delay: 0.35s; }
+  .product-card:nth-child(8) { animation-delay: 0.40s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<!-- ── CLIENT SCRIPTS ───────────────────────────────────────────── -->
+<script>
+  // Category filter
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.category-btn');
+  const cards   = document.querySelectorAll<HTMLElement>('.product-card');
+  const empty   = document.getElementById('empty-state')!;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      // Update active state
+      buttons.forEach(b => {
+        b.classList.remove('bg-red-600', 'border-red-600', 'text-white');
+        b.classList.add('border-zinc-700', 'text-zinc-400');
+      });
+      btn.classList.add('bg-red-600', 'border-red-600', 'text-white');
+      btn.classList.remove('border-zinc-700', 'text-zinc-400');
+
+      // Show / hide cards
+      let visible = 0;
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      empty.classList.toggle('hidden', visible > 0);
+    });
+  });
+</script>

@@ -1,0 +1,12 @@
+{
+  "name": "DARK Acid Wash Oversized Tee",
+  "price": 1299,
+  "category": "Tops",
+  "description": "A premium heavyweight acid-washed oversized tee with a distressed finish. Crafted from 240 GSM bio-washed cotton for that lived-in, drop-shoulder silhouette. Features a subtle DARK embroidered logo at the chest and a raw hem drop at the back. Built for the streets of Kerala.",
+  "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
+  "inStock": true,
+  "tags": ["oversized", "acid-wash", "heavyweight", "streetwear", "cotton"],
+  "sizes": ["S", "M", "L", "XL", "XXL"],
+  "colors": ["Washed Black", "Vintage Grey", "Faded Olive"],
+  "featured": true
+}
