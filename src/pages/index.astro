@@ -32,14 +32,14 @@ const categories = [...new Set(products.map(p => p.data.category))];
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <section class="relative min-h-[92vh] flex items-center overflow-hidden">
     <!-- Background layers -->
-    <div class="absolute inset-0 bg-[#070707]"></div>
+    <div class="absolute inset-0 bg-[var(--color-bg)]"></div>
     <!-- Noise texture overlay -->
     <div class="absolute inset-0 opacity-[0.03]"
       style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px 200px;">
     </div>
-    <!-- Red glow -->
-    <div class="absolute -top-32 -left-32 h-[600px] w-[600px] rounded-full bg-red-700/10 blur-[120px] pointer-events-none"></div>
-    <div class="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-red-900/8 blur-[100px] pointer-events-none"></div>
+    <!-- Gold glow -->
+    <div class="absolute -top-32 -left-32 h-[600px] w-[600px] rounded-full bg-[var(--color-accent)]/10 blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-[var(--color-accent)]/5 blur-[100px] pointer-events-none"></div>
 
     <!-- Grid lines decoration -->
     <div class="absolute inset-0 opacity-[0.04]"
@@ -51,21 +51,21 @@ const categories = [...new Set(products.map(p => p.data.category))];
       <div class="max-w-3xl">
         <!-- Eyebrow -->
         <div class="flex items-center gap-3 mb-8 animate-[fadeUp_0.6s_ease_both]">
-          <span class="h-px w-12 bg-red-600"></span>
-          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">
+          <span class="h-px w-12 bg-[var(--color-accent)]"></span>
+          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-[var(--color-accent)] uppercase">
             Padinjarangadi, Kerala
           </span>
         </div>
 
         <!-- Main headline -->
-        <h1 class="font-bebas text-[clamp(4rem,14vw,11rem)] leading-[0.88] tracking-wide text-white mb-6 animate-[fadeUp_0.7s_0.1s_ease_both_backwards]">
+        <h1 class="font-bebas text-[clamp(4rem,14vw,11rem)] leading-[0.88] tracking-wide text-[var(--color-text-main)] mb-6 animate-[fadeUp_0.7s_0.1s_ease_both_backwards]">
           SHOP THE<br/>
-          <span class="text-stroke-red">LATEST</span><br/>
-          <span class="text-red-600">TRENDS</span>
+          <span class="text-stroke-gold">LATEST</span><br/>
+          <span class="text-[var(--color-accent)]">TRENDS</span>
         </h1>
 
         <!-- Subheading -->
-        <p class="text-base sm:text-lg text-zinc-400 font-barlow font-light leading-relaxed max-w-md mb-10 animate-[fadeUp_0.7s_0.2s_ease_both_backwards]">
+        <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-barlow font-light leading-relaxed max-w-md mb-10 animate-[fadeUp_0.7s_0.2s_ease_both_backwards]">
           Padinjarangadi's go-to fashion and clothing store.
           Trending styles, quality picks, and a constantly refreshed selection —
           all available in-store and on WhatsApp.
@@ -75,7 +75,7 @@ const categories = [...new Set(products.map(p => p.data.category))];
         <div class="flex flex-wrap gap-4 animate-[fadeUp_0.7s_0.3s_ease_both_backwards]">
           <a
             href="#products"
-            class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_8px_30px_rgba(220,38,38,0.4)]"
+            class="inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-dim)] text-[#050505] font-barlow-condensed font-bold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_8px_30px_rgba(212,175,55,0.4)]"
           >
             Shop New Drops
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -84,7 +84,7 @@ const categories = [...new Set(products.map(p => p.data.category))];
           </a>
           <a
             href={`${base}/lookbook`}
-            class="inline-flex items-center gap-2 border border-zinc-700 hover:border-white text-zinc-400 hover:text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300"
+            class="inline-flex items-center gap-2 border border-zinc-700 hover:border-[var(--color-accent)] text-zinc-400 hover:text-[var(--color-accent)] font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300"
           >
             View Lookbook
           </a>
@@ -98,8 +98,8 @@ const categories = [...new Set(products.map(p => p.data.category))];
             { val: 'New',  label: 'Stock Regularly'  },
           ].map(({ val, label }) => (
             <div class="flex flex-col">
-              <span class="font-bebas text-3xl text-white tracking-wider">{val}</span>
-              <span class="text-xs text-zinc-500 font-barlow-condensed tracking-widest uppercase">{label}</span>
+              <span class="font-bebas text-3xl text-[var(--color-text-main)] tracking-wider">{val}</span>
+              <span class="text-xs text-[var(--color-text-muted)] font-barlow-condensed tracking-widest uppercase">{label}</span>
             </div>
           ))}
         </div>
@@ -126,10 +126,10 @@ const categories = [...new Set(products.map(p => p.data.category))];
   </section>
 
   <!-- ── TICKER BAND ────────────────────────────────────────────── -->
-  <div class="relative overflow-hidden bg-red-600 py-3">
+  <div class="relative overflow-hidden bg-[var(--color-accent)] py-3">
     <div class="flex whitespace-nowrap animate-[ticker_25s_linear_infinite]">
       {Array.from({ length: 6 }).map(() => (
-        <span class="inline-flex items-center gap-8 font-bebas text-white text-xl tracking-[0.2em] pr-16">
+        <span class="inline-flex items-center gap-8 font-bebas text-[#050505] text-xl tracking-[0.2em] pr-16">
           NEW STOCK &nbsp;·&nbsp; PADINJARANGADI &nbsp;·&nbsp; DARK FASHION &amp; TRENDS &nbsp;·&nbsp;
           MEN &amp; WOMEN &nbsp;·&nbsp; KERALA &nbsp;·&nbsp; VISIT US TODAY &nbsp;·&nbsp;
         </span>
@@ -141,14 +141,14 @@ const categories = [...new Set(products.map(p => p.data.category))];
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-4">
     <div class="flex flex-wrap items-center gap-3">
       <button
-        class="category-btn active-cat font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase px-5 py-2 border border-red-600 bg-red-600 text-white transition-all duration-200"
+        class="category-btn active-cat font-barlow-condensed text-sm font-bold tracking-[0.15em] uppercase px-5 py-2 border border-[var(--color-accent)] bg-[var(--color-accent)] text-[#050505] transition-all duration-200"
         data-filter="all"
       >
         All
       </button>
       {categories.map(cat => (
         <button
-          class="category-btn font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase px-5 py-2 border border-zinc-700 text-zinc-400 hover:border-white hover:text-white transition-all duration-200"
+          class="category-btn font-barlow-condensed text-sm font-semibold tracking-[0.15em] uppercase px-5 py-2 border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-200"
           data-filter={cat}
         >
           {cat}
@@ -161,10 +161,10 @@ const categories = [...new Set(products.map(p => p.data.category))];
   <section id="products" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 pb-24">
     <div class="flex items-end justify-between mb-10">
       <div>
-        <p class="text-xs text-zinc-600 font-barlow-condensed tracking-[0.3em] uppercase mb-2">Current Drop</p>
-        <h2 class="font-bebas text-5xl text-white tracking-wide">All Products</h2>
+        <p class="text-xs text-zinc-500 font-barlow-condensed tracking-[0.3em] uppercase mb-2">Current Drop</p>
+        <h2 class="font-bebas text-5xl text-[var(--color-text-main)] tracking-wide">All Products</h2>
       </div>
-      <span class="font-barlow-condensed text-sm text-zinc-500 tracking-widest uppercase">
+      <span class="font-barlow-condensed text-sm text-[var(--color-text-muted)] tracking-widest uppercase">
         {products.length} Items
       </span>
     </div>
@@ -179,7 +179,7 @@ const categories = [...new Set(products.map(p => p.data.category))];
 
         return (
           <article
-            class="product-card group relative bg-[#111] border border-white/5 overflow-hidden hover:border-red-600/40 transition-all duration-500"
+            class="product-card group relative bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden hover:border-[var(--color-accent)]/40 transition-all duration-500"
             data-category={category}
           >
             <!-- Product image -->
@@ -197,12 +197,12 @@ const categories = [...new Set(products.map(p => p.data.category))];
               <!-- Badges -->
               <div class="absolute top-3 left-3 flex flex-col gap-2">
                 {featured && (
-                  <span class="bg-red-600 text-white text-[10px] font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-2.5 py-1">
+                  <span class="bg-[var(--color-accent)] text-[#050505] text-[10px] font-barlow-condensed font-bold tracking-[0.15em] uppercase px-2.5 py-1">
                     Featured
                   </span>
                 )}
                 {!inStock && (
-                  <span class="bg-zinc-900/90 text-zinc-400 text-[10px] font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-2.5 py-1 border border-zinc-700">
+                  <span class="bg-[#050505]/90 text-[var(--color-text-muted)] text-[10px] font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-2.5 py-1 border border-[var(--color-border)]">
                     Sold Out
                   </span>
                 )}
@@ -212,7 +212,7 @@ const categories = [...new Set(products.map(p => p.data.category))];
               <div class="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-400 p-3">
                 <a
                   href={href}
-                  class="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-xs py-3 transition-colors duration-200"
+                  class="w-full flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-dim)] text-[#050505] font-barlow-condensed font-bold tracking-[0.15em] uppercase text-xs py-3 transition-colors duration-200"
                 >
                   View Product
                   <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -226,17 +226,17 @@ const categories = [...new Set(products.map(p => p.data.category))];
             <div class="p-4">
               <div class="flex items-start justify-between gap-2 mb-1">
                 <a href={href}>
-                  <h3 class="font-barlow font-semibold text-sm text-white leading-snug group-hover:text-red-400 transition-colors duration-200 line-clamp-2">
+                  <h3 class="font-barlow font-semibold text-sm text-[var(--color-text-main)] leading-snug group-hover:text-[var(--color-accent)] transition-colors duration-200 line-clamp-2">
                     {name}
                   </h3>
                 </a>
               </div>
-              <p class="text-xs text-zinc-600 font-barlow-condensed tracking-widest uppercase mb-3">{category}</p>
+              <p class="text-xs text-[var(--color-text-muted)] font-barlow-condensed tracking-widest uppercase mb-3">{category}</p>
               <div class="flex items-center justify-between">
-                <span class="font-bebas text-xl text-white tracking-wider">{formatPrice(price)}</span>
+                <span class="font-bebas text-xl text-[var(--color-text-main)] tracking-wider">{formatPrice(price)}</span>
                 <span class:list={[
                   'text-[10px] font-barlow-condensed font-semibold tracking-wider uppercase',
-                  inStock ? 'text-green-500' : 'text-zinc-600',
+                  inStock ? 'text-green-500' : 'text-[var(--color-text-muted)]',
                 ]}>
                   {inStock ? '● In Stock' : '○ Out of Stock'}
                 </span>
@@ -249,13 +249,13 @@ const categories = [...new Set(products.map(p => p.data.category))];
 
     <!-- Empty state (shown by JS when filter matches nothing) -->
     <div id="empty-state" class="hidden py-24 text-center">
-      <p class="font-bebas text-4xl text-zinc-700 mb-2">No products found</p>
+      <p class="font-bebas text-4xl text-[var(--color-text-muted)] mb-2">No products found</p>
       <p class="text-sm text-zinc-600">Try a different category filter.</p>
     </div>
   </section>
 
   <!-- ── VALUE PROPS ────────────────────────────────────────────── -->
-  <section class="border-t border-b border-white/5 bg-[#0d0d0d]">
+  <section class="border-t border-b border-[var(--color-border)] bg-[var(--color-surface)]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       {[
         {
@@ -280,12 +280,12 @@ const categories = [...new Set(products.map(p => p.data.category))];
         },
       ].map(({ icon, title, desc }) => (
         <div class="flex flex-col items-start gap-4">
-          <div class="flex items-center justify-center h-12 w-12 bg-red-600/10 border border-red-600/20 text-red-500">
+          <div class="flex items-center justify-center h-12 w-12 bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 text-[var(--color-accent)]">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" set:html={icon}></svg>
           </div>
           <div>
-            <h3 class="font-bebas text-xl text-white tracking-wide mb-1">{title}</h3>
-            <p class="text-sm text-zinc-500 leading-relaxed">{desc}</p>
+            <h3 class="font-bebas text-xl text-[var(--color-text-main)] tracking-wide mb-1">{title}</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{desc}</p>
           </div>
         </div>
       ))}
@@ -294,11 +294,11 @@ const categories = [...new Set(products.map(p => p.data.category))];
 
   <!-- ── NEWSLETTER / CTA ───────────────────────────────────────── -->
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-    <div class="relative overflow-hidden bg-[#111] border border-white/5 px-8 py-16 sm:px-16 text-center">
-      <div class="absolute -top-16 left-1/2 -translate-x-1/2 h-60 w-60 rounded-full bg-red-600/10 blur-[80px] pointer-events-none"></div>
-      <p class="text-xs text-red-500 font-barlow-condensed font-semibold tracking-[0.3em] uppercase mb-4">Order from Anywhere</p>
-      <h2 class="font-bebas text-5xl sm:text-7xl text-white tracking-wide mb-4">Shop on WhatsApp</h2>
-      <p class="text-zinc-500 max-w-md mx-auto text-sm leading-relaxed mb-10">
+    <div class="relative overflow-hidden bg-[var(--color-surface)] border border-[var(--color-border)] px-8 py-16 sm:px-16 text-center">
+      <div class="absolute -top-16 left-1/2 -translate-x-1/2 h-60 w-60 rounded-full bg-[var(--color-accent)]/10 blur-[80px] pointer-events-none"></div>
+      <p class="text-xs text-[var(--color-accent)] font-barlow-condensed font-semibold tracking-[0.3em] uppercase mb-4">Order from Anywhere</p>
+      <h2 class="font-bebas text-5xl sm:text-7xl text-[var(--color-text-main)] tracking-wide mb-4">Shop on WhatsApp</h2>
+      <p class="text-[var(--color-text-muted)] max-w-md mx-auto text-sm leading-relaxed mb-10">
         Can't make it to the store? Message us on WhatsApp with what you're looking for.
         We'll share availability, photos, and get your order sorted — wherever you are in Kerala.
       </p>
@@ -321,9 +321,9 @@ const categories = [...new Set(products.map(p => p.data.category))];
 <!-- ── PAGE STYLES ──────────────────────────────────────────────── -->
 <style>
   /* Outlined text */
-  .text-stroke-red {
+  .text-stroke-gold {
     color: transparent;
-    -webkit-text-stroke: 2px #dc2626;
+    -webkit-text-stroke: 2px var(--color-accent);
   }
 
   /* Ticker animation */
@@ -364,11 +364,11 @@ const categories = [...new Set(products.map(p => p.data.category))];
 
       // Update active state
       buttons.forEach(b => {
-        b.classList.remove('bg-red-600', 'border-red-600', 'text-white');
-        b.classList.add('border-zinc-700', 'text-zinc-400');
+        b.classList.remove('bg-[var(--color-accent)]', 'border-[var(--color-accent)]', 'text-[#050505]');
+        b.classList.add('border-[var(--color-border)]', 'text-[var(--color-text-muted)]');
       });
-      btn.classList.add('bg-red-600', 'border-red-600', 'text-white');
-      btn.classList.remove('border-zinc-700', 'text-zinc-400');
+      btn.classList.add('bg-[var(--color-accent)]', 'border-[var(--color-accent)]', 'text-[#050505]');
+      btn.classList.remove('border-[var(--color-border)]', 'text-[var(--color-text-muted)]');
 
       // Show / hide cards
       let visible = 0;
