@@ -1,66 +1,56 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-
 const base = import.meta.env.BASE_URL;
 
 const values = [
   {
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>`,
-    title: 'Born in Kerala',
-    desc:  'We started on the streets of Padinjarangadi with one belief — Kerala deserves its own streetwear identity. Every drop is inspired by the textures, colours, and spirit of home.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>`,
+    title: 'Rooted in Padinjarangadi',
+    desc:  'We are a local shop, proud of where we come from. We know our customers by name and our community by heart. Shopping here is not a transaction — it is a conversation.',
   },
   {
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"/>`,
-    title: 'Quality First',
-    desc:  'We use heavyweight bio-washed fabrics, ripstop shells, and premium satin. Every stitch is checked before it leaves our hands. No fast fashion. No cutting corners.',
+    title: 'Hand-picked Selection',
+    desc:  'Every item on our floor is chosen carefully. We source trending styles, quality fabrics, and pieces that actually fit Kerala\'s climate and culture — not just whatever is cheap to stock.',
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/>`,
+    title: 'Fair Prices',
+    desc:  'We keep our pricing honest. No inflated MRP games, no fake discounts. What you see is what you pay — and we always have something for every budget in the store.',
   },
   {
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/>`,
-    title: 'Community Driven',
-    desc:  'DARK is not just a label — it is a local movement. We collaborate with artists, photographers, and creators from across Malappuram to shape what streetwear means here.',
+    title: 'Personal Service',
+    desc:  'Walk in and we will help you find something that actually fits and suits you. No pushy selling. If we do not have what you need, we will tell you honestly.',
   },
-  {
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>`,
-    title: 'Made with Intent',
-    desc:  'Limited drops. No restocks. When something is gone, it is gone. We keep our runs small so every piece stays rare and every customer stays exclusive.',
-  },
-];
-
-const timeline = [
-  { year: '2024', label: 'The Idea',      desc: 'Two friends frustrated by generic mall fashion decided Kerala needed its own street brand.' },
-  { year: '2024', label: 'First Drop',    desc: 'DARK launched its debut collection — 50 oversized tees, sold out in one weekend through WhatsApp.' },
-  { year: '2025', label: 'Physical Store',desc: 'Opened our flagship store in Padinjarangadi, giving the community a dedicated streetwear space.' },
-  { year: '2025', label: 'Online Launch', desc: 'Expanded delivery across Kerala and pan-India, bringing DARK to every corner of the country.' },
-  { year: '2026', label: 'Growing Fast',  desc: '500+ customers, 50+ styles, and new collaborations with Kerala-based creatives underway.' },
 ];
 ---
 
 <MainLayout
-  title="About DARK Fashion & Trends — Streetwear from Padinjarangadi, Kerala"
-  description="Learn the story behind DARK Fashion & Trends — a premium streetwear brand born in Padinjarangadi, Kerala. Quality cuts, local culture, limited drops."
+  title="About DARK Fashion & Trends — Fashion & Clothing Store, Padinjarangadi"
+  description="DARK Fashion & Trends is a fashion and clothing retail store in Padinjarangadi, Kerala. We stock a wide range of trendy clothing, accessories, and more at fair prices."
 >
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
-  <section class="relative min-h-[60vh] flex items-center overflow-hidden">
+  <section class="relative min-h-[55vh] flex items-center overflow-hidden">
     <div class="absolute inset-0 bg-[#070707]"></div>
     <div class="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-red-700/8 blur-[120px] pointer-events-none"></div>
     <div class="absolute inset-0 opacity-[0.03]"
       style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 80px 80px;">
     </div>
-
     <div class="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-24">
       <div class="flex items-center gap-3 mb-6">
         <span class="h-px w-12 bg-red-600"></span>
-        <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">Our Story</span>
+        <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">Padinjarangadi, Kerala</span>
       </div>
       <h1 class="font-bebas text-[clamp(3.5rem,11vw,9rem)] leading-[0.88] tracking-wide text-white mb-6">
-        NOT JUST <br/>
-        A <span class="text-red-600">BRAND.</span><br/>
-        <span class="text-stroke-red">A MOVEMENT.</span>
+        YOUR LOCAL<br/>
+        <span class="text-red-600">FASHION</span><br/>
+        <span class="text-stroke-red">STORE.</span>
       </h1>
       <p class="text-base sm:text-lg text-zinc-400 font-barlow font-light leading-relaxed max-w-xl">
-        DARK Fashion & Trends started with a simple frustration and a bold vision —
-        to give Padinjarangadi, Kerala, its own unapologetic streetwear identity.
+        DARK Fashion & Trends is a clothing and fashion retail store based in Padinjarangadi, Malappuram.
+        We stock a carefully chosen range of trendy clothing, accessories, and styles — all under one roof, at prices that make sense.
       </p>
     </div>
   </section>
@@ -68,52 +58,51 @@ const timeline = [
   <!-- ── INTRO SPLIT ────────────────────────────────────────────── -->
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-      <!-- Image side -->
+
+      <!-- Image -->
       <div class="relative">
         <div class="aspect-[4/5] bg-zinc-900 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80"
-            alt="DARK Fashion store front"
+            src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80"
+            alt="Inside DARK Fashion & Trends store"
             class="h-full w-full object-cover"
           />
         </div>
-        <!-- Floating stat card -->
         <div class="absolute -bottom-6 -right-6 bg-red-600 px-8 py-6 hidden sm:block">
           <span class="font-bebas text-5xl text-white block leading-none">500+</span>
           <span class="font-barlow-condensed text-xs text-red-200 tracking-[0.2em] uppercase">Happy Customers</span>
         </div>
-        <!-- Decorative border -->
         <div class="absolute -top-4 -left-4 h-32 w-32 border border-red-600/30 pointer-events-none"></div>
       </div>
 
-      <!-- Text side -->
+      <!-- Text -->
       <div>
         <div class="flex items-center gap-3 mb-6">
           <span class="h-px w-8 bg-red-600"></span>
           <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">Who We Are</span>
         </div>
         <h2 class="font-bebas text-5xl text-white tracking-wide mb-6">
-          Streetwear Built for Kerala's Streets
+          Fashion You Can Actually Find in Padinjarangadi
         </h2>
         <div class="space-y-4 text-zinc-400 font-barlow text-sm leading-relaxed">
           <p>
-            We are DARK Fashion & Trends — a streetwear label operating out of Padinjarangadi, Malappuram, Kerala.
-            What started as late-night conversations about why Kerala had no real street brand turned into
-            a movement that now dresses hundreds of people across the state.
+            DARK Fashion & Trends is a retail clothing store in the heart of Padinjarangadi.
+            We opened our doors to give the local community a proper destination for fashion —
+            a place where you can walk in, browse a real selection, and leave with something you genuinely like.
           </p>
           <p>
-            Every piece we make carries a deliberate point of view. Drop-shoulder silhouettes, heavyweight fabrics,
-            utility construction, and a restraint in colour palette — because streetwear should feel considered,
-            not chaotic. We don't chase trends. We set them, then move on.
+            We stock a wide range of clothing and accessories for men and women — from casual everyday wear
+            to occasion outfits. Our team stays on top of current trends so the store is always fresh,
+            and we update our stock regularly so there is always something new to discover.
           </p>
           <p>
-            Our drops are intentionally limited. We believe scarcity and quality go hand in hand.
-            When a DARK piece sells out, it stays sold out — and the people who own it know exactly what they have.
+            We also take orders through WhatsApp, so if you have seen something specific or want help
+            putting together an outfit, just reach out. We are happy to help.
           </p>
         </div>
 
         <div class="mt-10 flex flex-wrap gap-8">
-          {[['50+','Unique Styles'], ['2+','Years in Kerala'], ['4','New Drops a Year']].map(([val, label]) => (
+          {[['500+','Happy Customers'], ['Wide','Selection'], ['Local','& Trusted']].map(([val, label]) => (
             <div>
               <span class="font-bebas text-4xl text-white block tracking-wider">{val}</span>
               <span class="font-barlow-condensed text-xs text-zinc-500 tracking-[0.2em] uppercase">{label}</span>
@@ -126,13 +115,13 @@ const timeline = [
             href={`${base}/shop`}
             class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-7 py-3.5 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(220,38,38,0.35)]"
           >
-            Shop the Drop
+            Browse the Store
           </a>
           <a
             href={`${base}/contact`}
             class="inline-flex items-center gap-2 border border-zinc-700 hover:border-white text-zinc-400 hover:text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-7 py-3.5 transition-all duration-300"
           >
-            Get in Touch
+            Find Us
           </a>
         </div>
       </div>
@@ -143,12 +132,12 @@ const timeline = [
   <section class="border-t border-b border-white/5 bg-[#0d0d0d] py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">What We Stand For</p>
-        <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">Our Values</h2>
+        <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">Why Shop With Us</p>
+        <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">What We Stand For</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {values.map(({ icon, title, desc }) => (
-          <div class="group relative bg-[#111] border border-white/5 p-8 hover:border-red-600/30 transition-all duration-500">
+          <div class="group bg-[#111] border border-white/5 p-8 hover:border-red-600/30 transition-all duration-500">
             <div class="flex items-center justify-center h-12 w-12 bg-red-600/10 border border-red-600/20 text-red-500 mb-6 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" set:html={icon}></svg>
             </div>
@@ -160,53 +149,40 @@ const timeline = [
     </div>
   </section>
 
-  <!-- ── TIMELINE ───────────────────────────────────────────────── -->
+  <!-- ── WHAT WE STOCK ──────────────────────────────────────────── -->
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-    <div class="text-center mb-16">
-      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">How It Happened</p>
-      <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">The DARK Timeline</h2>
+    <div class="text-center mb-14">
+      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">In Store & Online</p>
+      <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">What We Carry</h2>
     </div>
-    <div class="relative">
-      <!-- Vertical line -->
-      <div class="absolute left-[3.25rem] sm:left-1/2 top-0 bottom-0 w-px bg-white/5 -translate-x-1/2 hidden sm:block"></div>
-
-      <div class="space-y-12">
-        {timeline.map(({ year, label, desc }, i) => (
-          <div class:list={[
-            'relative flex items-start gap-8',
-            i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse',
-          ]}>
-            <!-- Year badge (center on desktop) -->
-            <div class="hidden sm:flex absolute left-1/2 -translate-x-1/2 top-1 z-10 items-center justify-center">
-              <div class="h-3 w-3 rounded-full bg-red-600 ring-4 ring-[#0a0a0a]"></div>
-            </div>
-
-            <!-- Empty spacer for alternating side -->
-            <div class="hidden sm:block flex-1"></div>
-
-            <!-- Content card -->
-            <div class="flex-1 bg-[#111] border border-white/5 p-6 sm:max-w-md hover:border-red-600/20 transition-colors duration-300">
-              <div class="flex items-center gap-3 mb-3">
-                <span class="font-bebas text-red-500 text-2xl tracking-wider">{year}</span>
-                <span class="h-px flex-1 bg-white/5"></span>
-              </div>
-              <h3 class="font-bebas text-2xl text-white tracking-wide mb-2">{label}</h3>
-              <p class="text-sm text-zinc-500 leading-relaxed">{desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      {[
+        { emoji: '👕', label: 'Tops & Tees'      },
+        { emoji: '👖', label: 'Bottoms'           },
+        { emoji: '🧥', label: 'Outerwear'         },
+        { emoji: '👟', label: 'Footwear'          },
+        { emoji: '🎒', label: 'Accessories'       },
+        { emoji: '👗', label: 'Sets & Co-ords'    },
+      ].map(({ emoji, label }) => (
+        <a
+          href={`${base}/shop`}
+          class="group flex flex-col items-center gap-3 bg-[#111] border border-white/5 hover:border-red-600/30 py-8 px-4 transition-all duration-300 hover:-translate-y-1"
+        >
+          <span class="text-3xl">{emoji}</span>
+          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.15em] uppercase text-zinc-400 group-hover:text-white transition-colors text-center">{label}</span>
+        </a>
+      ))}
     </div>
   </section>
 
-  <!-- ── SOCIAL PROOF / FOLLOW ──────────────────────────────────── -->
+  <!-- ── FACEBOOK CTA ───────────────────────────────────────────── -->
   <section class="border-t border-white/5 bg-[#0d0d0d] py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-4">Stay Connected</p>
-      <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide mb-4">Follow the Movement</h2>
+      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-4">Stay Updated</p>
+      <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide mb-4">Follow Us on Facebook</h2>
       <p class="text-zinc-500 text-sm max-w-md mx-auto leading-relaxed mb-10">
-        See new drops, behind-the-scenes content, and community fits on our Facebook page.
-        Join the growing DARK family.
+        See our latest arrivals, store updates, and offers on our Facebook page.
+        Give us a follow and never miss a new stock update.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
         <a
@@ -224,7 +200,7 @@ const timeline = [
           href={`${base}/contact`}
           class="inline-flex items-center gap-2 border border-zinc-700 hover:border-white text-zinc-400 hover:text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300"
         >
-          Contact Us
+          Visit the Store
         </a>
       </div>
     </div>
