@@ -29,7 +29,7 @@ const navLinks = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#050505" />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,18 +51,18 @@ const navLinks = [
     <meta name="twitter:image"       content={image} />
   </head>
 
-  <body class="bg-[#0a0a0a] text-zinc-300 font-barlow antialiased overflow-x-hidden">
+  <body class="bg-[var(--color-bg)] text-[var(--color-text-main)] font-barlow antialiased overflow-x-hidden">
 
     <!-- ── ANNOUNCEMENT BAR ─────────────────────────────────────── -->
-    <div class="w-full bg-red-600 text-white text-center py-2 px-4 text-xs tracking-[0.2em] font-barlow-condensed font-semibold uppercase">
+    <div class="w-full bg-[var(--color-accent)] text-[#050505] text-center py-2 px-4 text-xs tracking-[0.2em] font-barlow-condensed font-bold uppercase">
       New Discounts and Offers Coming soon! &nbsp;·&nbsp; New Drop Every Friday &nbsp;·&nbsp;
-      <a href={`${base}/shop`} class="underline underline-offset-2 hover:text-zinc-100 transition-colors">Shop Now →</a>
+      <a href={`${base}/shop`} class="underline underline-offset-2 hover:text-white transition-colors">Shop Now →</a>
     </div>
 
     <!-- ── NAVBAR ──────────────────────────────────────────────── -->
     <header
       id="navbar"
-      class="sticky top-0 z-50 w-full border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-md transition-all duration-300"
+      class="sticky top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur-md transition-all duration-300"
     >
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
 
@@ -76,8 +76,8 @@ const navLinks = [
           />
           <!-- Fallback text logo if image missing -->
           <span class="hidden items-center gap-1 font-bebas text-2xl tracking-wider text-white">
-            <span class="text-red-500">DARK</span>
-            <span class="text-xs font-barlow font-light text-zinc-400 self-end mb-0.5">Fashion & Trends</span>
+            <span class="text-[var(--color-accent)]">DARK</span>
+            <span class="text-xs font-barlow font-light text-[var(--color-text-muted)] self-end mb-0.5">Fashion & Trends</span>
           </span>
         </a>
 
@@ -90,8 +90,8 @@ const navLinks = [
                 class:list={[
                   'relative py-1 transition-colors duration-200 hover:text-white',
                   currentPath === href
-                    ? 'text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-red-500'
-                    : 'text-zinc-400',
+                    ? 'text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-[var(--color-accent)]'
+                    : 'text-[var(--color-text-muted)]',
                 ]}
               >
                 {label}
@@ -105,7 +105,7 @@ const navLinks = [
           <!-- Search -->
           <button
             aria-label="Search"
-            class="hidden sm:flex items-center justify-center h-9 w-9 rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-all duration-200"
+            class="hidden sm:flex items-center justify-center h-9 w-9 rounded-full text-[var(--color-text-muted)] hover:text-white hover:bg-white/10 transition-all duration-200"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803a7.5 7.5 0 0 0 10.607 0Z" />
@@ -115,12 +115,12 @@ const navLinks = [
           <!-- Cart -->
           <button
             aria-label="Shopping Cart"
-            class="relative flex items-center justify-center h-9 w-9 rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-all duration-200"
+            class="relative flex items-center justify-center h-9 w-9 rounded-full text-[var(--color-text-muted)] hover:text-white hover:bg-white/10 transition-all duration-200"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
             </svg>
-            <span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-white text-[10px] font-bold leading-none">
+            <span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--color-accent)] text-[#050505] text-[10px] font-bold leading-none">
               0
             </span>
           </button>
@@ -130,7 +130,7 @@ const navLinks = [
             id="mobile-menu-btn"
             aria-label="Open menu"
             aria-expanded="false"
-            class="flex md:hidden items-center justify-center h-9 w-9 rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-all"
+            class="flex md:hidden items-center justify-center h-9 w-9 rounded-full text-[var(--color-text-muted)] hover:text-white hover:bg-white/10 transition-all"
           >
             <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -145,7 +145,7 @@ const navLinks = [
       <!-- Mobile nav drawer -->
       <div
         id="mobile-menu"
-        class="hidden md:hidden border-t border-white/5 bg-[#0d0d0d]"
+        class="hidden md:hidden border-t border-[var(--color-border)] bg-[var(--color-surface)]"
       >
         <ul class="flex flex-col py-4 px-6 gap-1 font-barlow-condensed text-base font-semibold tracking-[0.15em] uppercase">
           {navLinks.map(({ label, href }) => (
@@ -153,8 +153,8 @@ const navLinks = [
               <a
                 href={href}
                 class:list={[
-                  'block py-3 border-b border-white/5 transition-colors duration-200 hover:text-red-400',
-                  currentPath === href ? 'text-white' : 'text-zinc-400',
+                  'block py-3 border-b border-[var(--color-border)] transition-colors duration-200 hover:text-[var(--color-accent)]',
+                  currentPath === href ? 'text-white' : 'text-[var(--color-text-muted)]',
                 ]}
               >
                 {label}
@@ -162,10 +162,10 @@ const navLinks = [
             </li>
           ))}
         </ul>
-        <div class="px-6 pb-6 pt-2 flex gap-4 text-xs text-zinc-500 font-barlow tracking-wide">
+        <div class="px-6 pb-6 pt-2 flex gap-4 text-xs text-[var(--color-text-muted)] font-barlow tracking-wide">
           <span>📍 Padinjarangadi, Kerala</span>
           <span>·</span>
-          <span>🕐 Mon–Sat 07am–06pm</span>
+          <span>🕐 Mon–Sat 09am–07pm</span>
         </div>
       </div>
     </header>
@@ -176,7 +176,7 @@ const navLinks = [
     </main>
 
     <!-- ── FOOTER ──────────────────────────────────────────────── -->
-    <footer class="border-t border-white/5 bg-[#080808] mt-24">
+    <footer class="border-t border-[var(--color-border)] bg-[#080808] mt-24">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -188,28 +188,28 @@ const navLinks = [
               class="h-14 w-auto object-contain mb-5"
               onerror="this.style.display='none'"
             />
-            <p class="text-sm text-zinc-500 leading-relaxed mb-5">
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-5">
               Street-ready. Culture-driven. Born in Kerala.
-              DARK Fashion & Trends brings you affordable clothes built for the pavement.
+              DARK Fashion & Trends brings you premium clothes built for the pavement.
             </p>
             <div class="flex items-center gap-4">
               <!-- Instagram -->
               <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"
-                class="text-zinc-500 hover:text-white transition-colors duration-200">
+                class="text-[var(--color-text-muted)] hover:text-white transition-colors duration-200">
                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
               </a>
               <!-- WhatsApp -->
               <a href="https://wa.me/919400000000" target="_blank" rel="noreferrer" aria-label="WhatsApp"
-                class="text-zinc-500 hover:text-green-400 transition-colors duration-200">
+                class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors duration-200">
                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                 </svg>
               </a>
               <!-- Facebook -->
               <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"
-                class="text-zinc-500 hover:text-blue-400 transition-colors duration-200">
+                class="text-[var(--color-text-muted)] hover:text-blue-400 transition-colors duration-200">
                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
@@ -220,11 +220,11 @@ const navLinks = [
           <!-- Shop links -->
           <div>
             <h3 class="font-bebas text-white tracking-widest text-lg mb-5">Shop</h3>
-            <ul class="space-y-3 text-sm text-zinc-500">
+            <ul class="space-y-3 text-sm text-[var(--color-text-muted)]">
               {['New Arrivals', 'Tops', 'Bottoms', 'Outerwear', 'Accessories', 'Sale'].map(item => (
                 <li>
-                  <a href={`${base}/shop`} class="hover:text-red-400 transition-colors duration-200 flex items-center gap-2">
-                    <span class="text-red-700">›</span>
+                  <a href={`${base}/shop`} class="hover:text-[var(--color-accent)] transition-colors duration-200 flex items-center gap-2">
+                    <span class="text-[var(--color-accent)]">›</span>
                     {item}
                   </a>
                 </li>
@@ -235,11 +235,11 @@ const navLinks = [
           <!-- Info links -->
           <div>
             <h3 class="font-bebas text-white tracking-widest text-lg mb-5">Info</h3>
-            <ul class="space-y-3 text-sm text-zinc-500">
+            <ul class="space-y-3 text-sm text-[var(--color-text-muted)]">
               {['About DARK', 'Size Guide', 'Care Instructions', 'Shipping & Returns', 'Privacy Policy'].map(item => (
                 <li>
-                  <a href={`${base}/about`} class="hover:text-red-400 transition-colors duration-200 flex items-center gap-2">
-                    <span class="text-red-700">›</span>
+                  <a href={`${base}/about`} class="hover:text-[var(--color-accent)] transition-colors duration-200 flex items-center gap-2">
+                    <span class="text-[var(--color-accent)]">›</span>
                     {item}
                   </a>
                 </li>
@@ -250,9 +250,9 @@ const navLinks = [
           <!-- Contact / Store info -->
           <div>
             <h3 class="font-bebas text-white tracking-widest text-lg mb-5">Find Us</h3>
-            <address class="not-italic space-y-4 text-sm text-zinc-500">
+            <address class="not-italic space-y-4 text-sm text-[var(--color-text-muted)]">
               <p class="flex gap-3">
-                <svg class="h-4 w-4 mt-0.5 text-red-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="h-4 w-4 mt-0.5 text-[var(--color-accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
@@ -261,19 +261,19 @@ const navLinks = [
                 Kerala — 676 521
               </p>
               <p class="flex gap-3">
-                <svg class="h-4 w-4 mt-0.5 text-red-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="h-4 w-4 mt-0.5 text-[var(--color-accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                 </svg>
                 <a href="tel:+919745265194" class="hover:text-white transition-colors">+91 94000 00000</a>
               </p>
               <p class="flex gap-3">
-                <svg class="h-4 w-4 mt-0.5 text-red-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="h-4 w-4 mt-0.5 text-[var(--color-accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
                 <a href="mailto:hello@darkfashion.in" class="hover:text-white transition-colors">hello@darkfashion.in</a>
               </p>
               <p class="flex gap-3">
-                <svg class="h-4 w-4 mt-0.5 text-red-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="h-4 w-4 mt-0.5 text-[var(--color-accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
                 Mon – Sat: 09:00 AM – 07:00 PM<br/>
@@ -284,15 +284,15 @@ const navLinks = [
         </div>
 
         <!-- Bottom bar -->
-        <div class="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p class="text-xs text-zinc-600 text-center sm:text-left">
+        <div class="mt-16 pt-8 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="text-xs text-[var(--color-text-muted)] text-center sm:text-left">
             © {new Date().getFullYear()} DARK Fashion & Trends. All rights reserved.
             Designed with ♥ in Padinjarangadi, Kerala.
           </p>
-          <div class="flex items-center gap-2 text-zinc-700">
+          <div class="flex items-center gap-2 text-zinc-500">
             <!-- Payment icons as text badges -->
             {['UPI', 'Visa', 'Mastercard', 'RuPay', 'COD'].map(p => (
-              <span class="border border-zinc-700 rounded px-2 py-0.5 text-[10px] font-barlow-condensed font-semibold tracking-wider">
+              <span class="border border-[var(--color-border)] rounded px-2 py-0.5 text-[10px] font-barlow-condensed font-semibold tracking-wider">
                 {p}
               </span>
             ))}
