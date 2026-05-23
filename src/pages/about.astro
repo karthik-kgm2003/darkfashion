@@ -33,22 +33,22 @@ const values = [
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <section class="relative min-h-[55vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 bg-[#070707]"></div>
-    <div class="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-red-700/8 blur-[120px] pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[var(--color-bg)]"></div>
+    <div class="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-[var(--color-accent)]/10 blur-[120px] pointer-events-none"></div>
     <div class="absolute inset-0 opacity-[0.03]"
       style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 80px 80px;">
     </div>
     <div class="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-24">
       <div class="flex items-center gap-3 mb-6">
-        <span class="h-px w-12 bg-red-600"></span>
-        <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">Padinjarangadi, Kerala</span>
+        <span class="h-px w-12 bg-[var(--color-accent)]"></span>
+        <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-[var(--color-accent)] uppercase">Padinjarangadi, Kerala</span>
       </div>
-      <h1 class="font-bebas text-[clamp(3.5rem,11vw,9rem)] leading-[0.88] tracking-wide text-white mb-6">
+      <h1 class="font-bebas text-[clamp(3.5rem,11vw,9rem)] leading-[0.88] tracking-wide text-[var(--color-text-main)] mb-6">
         YOUR LOCAL<br/>
-        <span class="text-red-600">FASHION</span><br/>
-        <span class="text-stroke-red">STORE.</span>
+        <span class="text-[var(--color-accent)]">FASHION</span><br/>
+        <span class="text-stroke-gold">STORE.</span>
       </h1>
-      <p class="text-base sm:text-lg text-zinc-400 font-barlow font-light leading-relaxed max-w-xl">
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-barlow font-light leading-relaxed max-w-xl">
         DARK Fashion & Trends is a clothing and fashion retail store based in Padinjarangadi, Malappuram.
         We stock a carefully chosen range of trendy clothing, accessories, and styles — all under one roof, at prices that make sense.
       </p>
@@ -68,23 +68,23 @@ const values = [
             class="h-full w-full object-cover"
           />
         </div>
-        <div class="absolute -bottom-6 -right-6 bg-red-600 px-8 py-6 hidden sm:block">
-          <span class="font-bebas text-5xl text-white block leading-none">500+</span>
-          <span class="font-barlow-condensed text-xs text-red-200 tracking-[0.2em] uppercase">Happy Customers</span>
+        <div class="absolute -bottom-6 -right-6 bg-[var(--color-accent)] px-8 py-6 hidden sm:block">
+          <span class="font-bebas text-5xl text-[#050505] block leading-none">500+</span>
+          <span class="font-barlow-condensed text-xs text-[#050505] tracking-[0.2em] font-semibold uppercase">Happy Customers</span>
         </div>
-        <div class="absolute -top-4 -left-4 h-32 w-32 border border-red-600/30 pointer-events-none"></div>
+        <div class="absolute -top-4 -left-4 h-32 w-32 border border-[var(--color-accent)]/30 pointer-events-none"></div>
       </div>
 
       <!-- Text -->
       <div>
         <div class="flex items-center gap-3 mb-6">
-          <span class="h-px w-8 bg-red-600"></span>
-          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">Who We Are</span>
+          <span class="h-px w-8 bg-[var(--color-accent)]"></span>
+          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-[var(--color-accent)] uppercase">Who We Are</span>
         </div>
-        <h2 class="font-bebas text-5xl text-white tracking-wide mb-6">
+        <h2 class="font-bebas text-5xl text-[var(--color-text-main)] tracking-wide mb-6">
           Fashion You Can Actually Find in Padinjarangadi
         </h2>
-        <div class="space-y-4 text-zinc-400 font-barlow text-sm leading-relaxed">
+        <div class="space-y-4 text-[var(--color-text-muted)] font-barlow text-sm leading-relaxed">
           <p>
             DARK Fashion & Trends is a retail clothing store in the heart of Padinjarangadi.
             We opened our doors to give the local community a proper destination for fashion —
@@ -104,8 +104,8 @@ const values = [
         <div class="mt-10 flex flex-wrap gap-8">
           {[['500+','Happy Customers'], ['Wide','Selection'], ['Local','& Trusted']].map(([val, label]) => (
             <div>
-              <span class="font-bebas text-4xl text-white block tracking-wider">{val}</span>
-              <span class="font-barlow-condensed text-xs text-zinc-500 tracking-[0.2em] uppercase">{label}</span>
+              <span class="font-bebas text-4xl text-[var(--color-text-main)] block tracking-wider">{val}</span>
+              <span class="font-barlow-condensed text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase">{label}</span>
             </div>
           ))}
         </div>
@@ -113,13 +113,13 @@ const values = [
         <div class="mt-10 flex gap-4">
           <a
             href={`${base}/shop`}
-            class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-7 py-3.5 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(220,38,38,0.35)]"
+            class="inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-dim)] text-[#050505] font-barlow-condensed font-bold tracking-[0.15em] uppercase text-sm px-7 py-3.5 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(212,175,55,0.35)]"
           >
             Browse the Store
           </a>
           <a
             href={`${base}/contact`}
-            class="inline-flex items-center gap-2 border border-zinc-700 hover:border-white text-zinc-400 hover:text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-7 py-3.5 transition-all duration-300"
+            class="inline-flex items-center gap-2 border border-[var(--color-border)] hover:border-[var(--color-accent)] text-[var(--color-text-muted)] hover:text-[var(--color-accent)] font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-7 py-3.5 transition-all duration-300"
           >
             Find Us
           </a>
@@ -129,20 +129,20 @@ const values = [
   </section>
 
   <!-- ── VALUES ─────────────────────────────────────────────────── -->
-  <section class="border-t border-b border-white/5 bg-[#0d0d0d] py-24">
+  <section class="border-t border-b border-[var(--color-border)] bg-[var(--color-bg)] py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">Why Shop With Us</p>
-        <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">What We Stand For</h2>
+        <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-[var(--color-accent)] uppercase mb-3">Why Shop With Us</p>
+        <h2 class="font-bebas text-5xl sm:text-6xl text-[var(--color-text-main)] tracking-wide">What We Stand For</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {values.map(({ icon, title, desc }) => (
-          <div class="group bg-[#111] border border-white/5 p-8 hover:border-red-600/30 transition-all duration-500">
-            <div class="flex items-center justify-center h-12 w-12 bg-red-600/10 border border-red-600/20 text-red-500 mb-6 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+          <div class="group bg-[var(--color-surface)] border border-[var(--color-border)] p-8 hover:border-[var(--color-accent)]/30 transition-all duration-500">
+            <div class="flex items-center justify-center h-12 w-12 bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 text-[var(--color-accent)] mb-6 group-hover:bg-[var(--color-accent)] group-hover:text-[#050505] transition-all duration-300">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" set:html={icon}></svg>
             </div>
-            <h3 class="font-bebas text-2xl text-white tracking-wide mb-3">{title}</h3>
-            <p class="text-sm text-zinc-500 leading-relaxed">{desc}</p>
+            <h3 class="font-bebas text-2xl text-[var(--color-text-main)] tracking-wide mb-3">{title}</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{desc}</p>
           </div>
         ))}
       </div>
@@ -152,8 +152,8 @@ const values = [
   <!-- ── WHAT WE STOCK ──────────────────────────────────────────── -->
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
     <div class="text-center mb-14">
-      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">In Store & Online</p>
-      <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">What We Carry</h2>
+      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-[var(--color-accent)] uppercase mb-3">In Store & Online</p>
+      <h2 class="font-bebas text-5xl sm:text-6xl text-[var(--color-text-main)] tracking-wide">What We Carry</h2>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
       {[
@@ -166,21 +166,21 @@ const values = [
       ].map(({ emoji, label }) => (
         <a
           href={`${base}/shop`}
-          class="group flex flex-col items-center gap-3 bg-[#111] border border-white/5 hover:border-red-600/30 py-8 px-4 transition-all duration-300 hover:-translate-y-1"
+          class="group flex flex-col items-center gap-3 bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-accent)]/30 py-8 px-4 transition-all duration-300 hover:-translate-y-1"
         >
           <span class="text-3xl">{emoji}</span>
-          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.15em] uppercase text-zinc-400 group-hover:text-white transition-colors text-center">{label}</span>
+          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.15em] uppercase text-[var(--color-text-muted)] group-hover:text-[var(--color-text-main)] transition-colors text-center">{label}</span>
         </a>
       ))}
     </div>
   </section>
 
   <!-- ── FACEBOOK CTA ───────────────────────────────────────────── -->
-  <section class="border-t border-white/5 bg-[#0d0d0d] py-24">
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-4">Stay Updated</p>
-      <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide mb-4">Follow Us on Facebook</h2>
-      <p class="text-zinc-500 text-sm max-w-md mx-auto leading-relaxed mb-10">
+      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-[var(--color-accent)] uppercase mb-4">Stay Updated</p>
+      <h2 class="font-bebas text-5xl sm:text-6xl text-[var(--color-text-main)] tracking-wide mb-4">Follow Us on Facebook</h2>
+      <p class="text-[var(--color-text-muted)] text-sm max-w-md mx-auto leading-relaxed mb-10">
         See our latest arrivals, store updates, and offers on our Facebook page.
         Give us a follow and never miss a new stock update.
       </p>
@@ -198,7 +198,7 @@ const values = [
         </a>
         <a
           href={`${base}/contact`}
-          class="inline-flex items-center gap-2 border border-zinc-700 hover:border-white text-zinc-400 hover:text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300"
+          class="inline-flex items-center gap-2 border border-[var(--color-border)] hover:border-[var(--color-accent)] text-[var(--color-text-muted)] hover:text-[var(--color-accent)] font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300"
         >
           Visit the Store
         </a>
@@ -209,8 +209,8 @@ const values = [
 </MainLayout>
 
 <style>
-  .text-stroke-red {
+  .text-stroke-gold {
     color: transparent;
-    -webkit-text-stroke: 2px #dc2626;
+    -webkit-text-stroke: 2px var(--color-accent);
   }
 </style>
