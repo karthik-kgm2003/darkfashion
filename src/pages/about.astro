@@ -1,0 +1,240 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const values = [
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>`,
+    title: 'Born in Kerala',
+    desc:  'We started on the streets of Padinjarangadi with one belief — Kerala deserves its own streetwear identity. Every drop is inspired by the textures, colours, and spirit of home.',
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"/>`,
+    title: 'Quality First',
+    desc:  'We use heavyweight bio-washed fabrics, ripstop shells, and premium satin. Every stitch is checked before it leaves our hands. No fast fashion. No cutting corners.',
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/>`,
+    title: 'Community Driven',
+    desc:  'DARK is not just a label — it is a local movement. We collaborate with artists, photographers, and creators from across Malappuram to shape what streetwear means here.',
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>`,
+    title: 'Made with Intent',
+    desc:  'Limited drops. No restocks. When something is gone, it is gone. We keep our runs small so every piece stays rare and every customer stays exclusive.',
+  },
+];
+
+const timeline = [
+  { year: '2024', label: 'The Idea',      desc: 'Two friends frustrated by generic mall fashion decided Kerala needed its own street brand.' },
+  { year: '2024', label: 'First Drop',    desc: 'DARK launched its debut collection — 50 oversized tees, sold out in one weekend through WhatsApp.' },
+  { year: '2025', label: 'Physical Store',desc: 'Opened our flagship store in Padinjarangadi, giving the community a dedicated streetwear space.' },
+  { year: '2025', label: 'Online Launch', desc: 'Expanded delivery across Kerala and pan-India, bringing DARK to every corner of the country.' },
+  { year: '2026', label: 'Growing Fast',  desc: '500+ customers, 50+ styles, and new collaborations with Kerala-based creatives underway.' },
+];
+---
+
+<MainLayout
+  title="About DARK Fashion & Trends — Streetwear from Padinjarangadi, Kerala"
+  description="Learn the story behind DARK Fashion & Trends — a premium streetwear brand born in Padinjarangadi, Kerala. Quality cuts, local culture, limited drops."
+>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="relative min-h-[60vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-[#070707]"></div>
+    <div class="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-red-700/8 blur-[120px] pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-[0.03]"
+      style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 80px 80px;">
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-24">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="h-px w-12 bg-red-600"></span>
+        <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">Our Story</span>
+      </div>
+      <h1 class="font-bebas text-[clamp(3.5rem,11vw,9rem)] leading-[0.88] tracking-wide text-white mb-6">
+        NOT JUST <br/>
+        A <span class="text-red-600">BRAND.</span><br/>
+        <span class="text-stroke-red">A MOVEMENT.</span>
+      </h1>
+      <p class="text-base sm:text-lg text-zinc-400 font-barlow font-light leading-relaxed max-w-xl">
+        DARK Fashion & Trends started with a simple frustration and a bold vision —
+        to give Padinjarangadi, Kerala, its own unapologetic streetwear identity.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── INTRO SPLIT ────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Image side -->
+      <div class="relative">
+        <div class="aspect-[4/5] bg-zinc-900 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80"
+            alt="DARK Fashion store front"
+            class="h-full w-full object-cover"
+          />
+        </div>
+        <!-- Floating stat card -->
+        <div class="absolute -bottom-6 -right-6 bg-red-600 px-8 py-6 hidden sm:block">
+          <span class="font-bebas text-5xl text-white block leading-none">500+</span>
+          <span class="font-barlow-condensed text-xs text-red-200 tracking-[0.2em] uppercase">Happy Customers</span>
+        </div>
+        <!-- Decorative border -->
+        <div class="absolute -top-4 -left-4 h-32 w-32 border border-red-600/30 pointer-events-none"></div>
+      </div>
+
+      <!-- Text side -->
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="h-px w-8 bg-red-600"></span>
+          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">Who We Are</span>
+        </div>
+        <h2 class="font-bebas text-5xl text-white tracking-wide mb-6">
+          Streetwear Built for Kerala's Streets
+        </h2>
+        <div class="space-y-4 text-zinc-400 font-barlow text-sm leading-relaxed">
+          <p>
+            We are DARK Fashion & Trends — a streetwear label operating out of Padinjarangadi, Malappuram, Kerala.
+            What started as late-night conversations about why Kerala had no real street brand turned into
+            a movement that now dresses hundreds of people across the state.
+          </p>
+          <p>
+            Every piece we make carries a deliberate point of view. Drop-shoulder silhouettes, heavyweight fabrics,
+            utility construction, and a restraint in colour palette — because streetwear should feel considered,
+            not chaotic. We don't chase trends. We set them, then move on.
+          </p>
+          <p>
+            Our drops are intentionally limited. We believe scarcity and quality go hand in hand.
+            When a DARK piece sells out, it stays sold out — and the people who own it know exactly what they have.
+          </p>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-8">
+          {[['50+','Unique Styles'], ['2+','Years in Kerala'], ['4','New Drops a Year']].map(([val, label]) => (
+            <div>
+              <span class="font-bebas text-4xl text-white block tracking-wider">{val}</span>
+              <span class="font-barlow-condensed text-xs text-zinc-500 tracking-[0.2em] uppercase">{label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 flex gap-4">
+          <a
+            href={`${base}/shop`}
+            class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-7 py-3.5 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(220,38,38,0.35)]"
+          >
+            Shop the Drop
+          </a>
+          <a
+            href={`${base}/contact`}
+            class="inline-flex items-center gap-2 border border-zinc-700 hover:border-white text-zinc-400 hover:text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-7 py-3.5 transition-all duration-300"
+          >
+            Get in Touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VALUES ─────────────────────────────────────────────────── -->
+  <section class="border-t border-b border-white/5 bg-[#0d0d0d] py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">What We Stand For</p>
+        <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">Our Values</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {values.map(({ icon, title, desc }) => (
+          <div class="group relative bg-[#111] border border-white/5 p-8 hover:border-red-600/30 transition-all duration-500">
+            <div class="flex items-center justify-center h-12 w-12 bg-red-600/10 border border-red-600/20 text-red-500 mb-6 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" set:html={icon}></svg>
+            </div>
+            <h3 class="font-bebas text-2xl text-white tracking-wide mb-3">{title}</h3>
+            <p class="text-sm text-zinc-500 leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TIMELINE ───────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="text-center mb-16">
+      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">How It Happened</p>
+      <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">The DARK Timeline</h2>
+    </div>
+    <div class="relative">
+      <!-- Vertical line -->
+      <div class="absolute left-[3.25rem] sm:left-1/2 top-0 bottom-0 w-px bg-white/5 -translate-x-1/2 hidden sm:block"></div>
+
+      <div class="space-y-12">
+        {timeline.map(({ year, label, desc }, i) => (
+          <div class:list={[
+            'relative flex items-start gap-8',
+            i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse',
+          ]}>
+            <!-- Year badge (center on desktop) -->
+            <div class="hidden sm:flex absolute left-1/2 -translate-x-1/2 top-1 z-10 items-center justify-center">
+              <div class="h-3 w-3 rounded-full bg-red-600 ring-4 ring-[#0a0a0a]"></div>
+            </div>
+
+            <!-- Empty spacer for alternating side -->
+            <div class="hidden sm:block flex-1"></div>
+
+            <!-- Content card -->
+            <div class="flex-1 bg-[#111] border border-white/5 p-6 sm:max-w-md hover:border-red-600/20 transition-colors duration-300">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="font-bebas text-red-500 text-2xl tracking-wider">{year}</span>
+                <span class="h-px flex-1 bg-white/5"></span>
+              </div>
+              <h3 class="font-bebas text-2xl text-white tracking-wide mb-2">{label}</h3>
+              <p class="text-sm text-zinc-500 leading-relaxed">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL PROOF / FOLLOW ──────────────────────────────────── -->
+  <section class="border-t border-white/5 bg-[#0d0d0d] py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-4">Stay Connected</p>
+      <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide mb-4">Follow the Movement</h2>
+      <p class="text-zinc-500 text-sm max-w-md mx-auto leading-relaxed mb-10">
+        See new drops, behind-the-scenes content, and community fits on our Facebook page.
+        Join the growing DARK family.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="https://www.facebook.com/people/DARK-Fashion-Trends/61574476133825/"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-3 bg-[#1877F2] hover:bg-[#166fe5] text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(24,119,242,0.4)]"
+        >
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Follow on Facebook
+        </a>
+        <a
+          href={`${base}/contact`}
+          class="inline-flex items-center gap-2 border border-zinc-700 hover:border-white text-zinc-400 hover:text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .text-stroke-red {
+    color: transparent;
+    -webkit-text-stroke: 2px #dc2626;
+  }
+</style>

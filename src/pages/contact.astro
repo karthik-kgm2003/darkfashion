@@ -1,0 +1,437 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const contactMethods = [
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>`,
+    label:    'Visit Our Store',
+    value:    'Padinjarangadi, Malappuram, Kerala — 676 521',
+    sub:      'Mon–Sat 10am–8pm · Sun 11am–6pm',
+    href:     'https://maps.google.com/?q=Padinjarangadi,Kerala',
+    cta:      'Get Directions',
+    color:    'red',
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>`,
+    label:    'Call or WhatsApp',
+    // TODO: Replace with your real phone number
+    value:    '+91 XXXXX XXXXX',
+    sub:      'Available during store hours',
+    // TODO: Replace XXXXXXXXXXX with your real WhatsApp number (no + or spaces)
+    href:     'https://wa.me/91XXXXXXXXXXX?text=Hi%20DARK%20Fashion%2C%20I%20have%20a%20question!',
+    cta:      'Open WhatsApp',
+    color:    'green',
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>`,
+    label:    'Email Us',
+    // TODO: Replace with your real email address
+    value:    'hello@darkfashion.in',
+    sub:      'We reply within 24 hours',
+    href:     'mailto:hello@darkfashion.in',
+    cta:      'Send Email',
+    color:    'zinc',
+  },
+  {
+    icon: `<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>`,
+    label:    'Facebook',
+    value:    'DARK Fashion & Trends',
+    sub:      'Follow us for new drops & updates',
+    href:     'https://www.facebook.com/people/DARK-Fashion-Trends/61574476133825/',
+    cta:      'Open Facebook',
+    color:    'blue',
+    filled:   true,
+  },
+];
+
+const faqs = [
+  {
+    q: 'Do you deliver outside Kerala?',
+    a: 'Yes! We deliver pan-India. Standard delivery takes 5–7 business days. Free shipping on orders above ₹1,999 anywhere in India.',
+  },
+  {
+    q: 'How do I place an order on WhatsApp?',
+    a: 'Simply click the WhatsApp button on any product page — it pre-fills the product details. Send us your size, colour, and address and we will confirm availability and share payment details.',
+  },
+  {
+    q: 'What payment methods do you accept?',
+    a: 'We accept UPI (GPay, PhonePe, Paytm), bank transfer, and Cash on Delivery (COD) for orders within Kerala. COD is available on select orders pan-India.',
+  },
+  {
+    q: 'Can I exchange for a different size?',
+    a: 'Yes. Size exchanges are accepted within 14 days of delivery on unworn, unwashed items with original tags intact. WhatsApp us to initiate the exchange.',
+  },
+  {
+    q: 'When is the next drop?',
+    a: 'New drops land every Friday. Follow our Facebook page and join our WhatsApp drop list to get notified the moment a new collection goes live.',
+  },
+  {
+    q: 'Do you do custom or bulk orders?',
+    a: 'We handle bulk orders for teams, clubs, and events. WhatsApp us with your requirements and we will share pricing and timelines.',
+  },
+];
+---
+
+<MainLayout
+  title="Contact DARK Fashion & Trends — Padinjarangadi, Kerala"
+  description="Reach out to DARK Fashion & Trends. Visit our store in Padinjarangadi, call or WhatsApp us, or connect on Facebook for new drops and inquiries."
+>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="relative overflow-hidden bg-[#070707] py-24 sm:py-32">
+    <div class="absolute top-0 left-0 h-[400px] w-[400px] rounded-full bg-red-700/8 blur-[120px] pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-[0.03]"
+      style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 80px 80px;">
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="h-px w-12 bg-red-600"></span>
+        <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">We're Here</span>
+      </div>
+      <h1 class="font-bebas text-[clamp(3.5rem,11vw,9rem)] leading-[0.88] tracking-wide text-white mb-6">
+        GET IN<br/>
+        <span class="text-red-600">TOUCH</span>
+      </h1>
+      <p class="text-base sm:text-lg text-zinc-400 font-barlow font-light leading-relaxed max-w-lg">
+        Have a question about sizing, an order, a collaboration, or just want to know when the next drop lands?
+        Reach us through any of the channels below — we're a small team and we actually respond.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CONTACT CARDS ──────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {contactMethods.map(({ icon, label, value, sub, href, cta, color, filled }) => (
+        <div class="group bg-[#111] border border-white/5 p-7 flex flex-col hover:border-red-600/30 transition-all duration-500">
+          <!-- Icon -->
+          <div class:list={[
+            'flex items-center justify-center h-12 w-12 border mb-6 transition-all duration-300 group-hover:scale-110',
+            color === 'red'   ? 'bg-red-600/10  border-red-600/20  text-red-500  group-hover:bg-red-600  group-hover:text-white group-hover:border-red-600'  : '',
+            color === 'green' ? 'bg-green-600/10 border-green-600/20 text-green-500 group-hover:bg-green-600 group-hover:text-white group-hover:border-green-600' : '',
+            color === 'blue'  ? 'bg-blue-600/10  border-blue-600/20  text-blue-500  group-hover:bg-blue-600  group-hover:text-white group-hover:border-blue-600'  : '',
+            color === 'zinc'  ? 'bg-zinc-800     border-zinc-700     text-zinc-400  group-hover:bg-zinc-700 group-hover:text-white group-hover:border-zinc-600'  : '',
+          ]}>
+            <svg class="h-6 w-6" fill={filled ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke-width="1.5" stroke={filled ? 'none' : 'currentColor'} set:html={icon}></svg>
+          </div>
+
+          <!-- Text -->
+          <p class="font-barlow-condensed text-xs font-semibold tracking-[0.25em] text-zinc-600 uppercase mb-2">{label}</p>
+          <p class="font-barlow text-sm font-semibold text-white mb-1 leading-snug">{value}</p>
+          <p class="text-xs text-zinc-500 mb-6 leading-relaxed">{sub}</p>
+
+          <!-- CTA -->
+          <a
+            href={href}
+            target={href.startsWith('http') ? '_blank' : undefined}
+            rel={href.startsWith('http') ? 'noreferrer' : undefined}
+            class:list={[
+              'mt-auto inline-flex items-center gap-2 font-barlow-condensed text-xs font-semibold tracking-[0.2em] uppercase transition-colors duration-200',
+              color === 'red'   ? 'text-red-500 hover:text-red-400'     : '',
+              color === 'green' ? 'text-green-500 hover:text-green-400'  : '',
+              color === 'blue'  ? 'text-blue-400 hover:text-blue-300'    : '',
+              color === 'zinc'  ? 'text-zinc-400 hover:text-white'       : '',
+            ]}
+          >
+            {cta}
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── MAP + FORM SPLIT ───────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+      <!-- ── Map & Store info ────────────────────────────────────── -->
+      <div class="space-y-6">
+        <!-- Embedded map placeholder (replace src with a real embed if needed) -->
+        <div class="relative w-full aspect-video bg-zinc-900 border border-white/5 overflow-hidden">
+          <iframe
+            title="DARK Fashion & Trends location"
+            class="w-full h-full grayscale opacity-80"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.0!2d76.0!3d11.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zUGFkaW5qYXJhbmdhZGkgS2VyYWxh!5e0!3m2!1sen!2sin!4v1"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <!-- Map overlay label -->
+          <div class="absolute bottom-4 left-4 bg-[#0a0a0a]/90 border border-white/10 px-4 py-3 backdrop-blur-sm">
+            <p class="font-bebas text-white tracking-wider text-sm">DARK Fashion & Trends</p>
+            <p class="text-xs text-zinc-500 font-barlow">Padinjarangadi, Kerala</p>
+          </div>
+        </div>
+
+        <!-- Store hours table -->
+        <div class="bg-[#111] border border-white/5 p-7">
+          <h3 class="font-bebas text-2xl text-white tracking-wide mb-5">Store Hours</h3>
+          <div class="space-y-2">
+            {[
+              ['Monday',    '10:00 AM – 8:00 PM'],
+              ['Tuesday',   '10:00 AM – 8:00 PM'],
+              ['Wednesday', '10:00 AM – 8:00 PM'],
+              ['Thursday',  '10:00 AM – 8:00 PM'],
+              ['Friday',    '10:00 AM – 8:00 PM'],
+              ['Saturday',  '10:00 AM – 8:00 PM'],
+              ['Sunday',    '11:00 AM – 6:00 PM'],
+            ].map(([day, hours]) => {
+              const isToday = new Date().toLocaleDateString('en-US', { weekday: 'long' }) === day;
+              return (
+                <div class:list={[
+                  'flex items-center justify-between py-2.5 border-b border-white/5 last:border-0',
+                ]}>
+                  <span class:list={[
+                    'font-barlow-condensed text-sm font-semibold tracking-wide',
+                    isToday ? 'text-red-400' : 'text-zinc-400',
+                  ]}>
+                    {day}
+                    {isToday && <span class="ml-2 text-[10px] bg-red-600/20 text-red-400 border border-red-600/30 px-1.5 py-0.5 rounded tracking-widest uppercase">Today</span>}
+                  </span>
+                  <span class:list={[
+                    'font-barlow text-sm',
+                    isToday ? 'text-white font-semibold' : 'text-zinc-500',
+                  ]}>
+                    {hours}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Contact form ────────────────────────────────────────── -->
+      <div class="bg-[#111] border border-white/5 p-8 sm:p-10">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="h-px w-8 bg-red-600"></span>
+          <span class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase">Send a Message</span>
+        </div>
+        <h2 class="font-bebas text-4xl text-white tracking-wide mb-8">Drop Us a Line</h2>
+
+        <!--
+          This is a static HTML form. To make it functional, connect it to a
+          form backend such as:
+            • Formspree  (https://formspree.io)   — free tier available
+            • Netlify Forms                        — if hosting on Netlify
+            • Web3Forms  (https://web3forms.com)   — free, no server needed
+
+          Replace the action URL below with your form endpoint.
+        -->
+        <form
+          id="contact-form"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          class="space-y-5"
+          novalidate
+        >
+          <!-- Name + Phone row -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="name" class="block font-barlow-condensed text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-2">
+                Full Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Your name"
+                class="w-full bg-[#0d0d0d] border border-zinc-800 focus:border-red-600 text-white placeholder-zinc-600 text-sm font-barlow px-4 py-3 outline-none transition-colors duration-200"
+              />
+            </div>
+            <div>
+              <label for="phone" class="block font-barlow-condensed text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-2">
+                Phone / WhatsApp
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="+91 XXXXX XXXXX"
+                class="w-full bg-[#0d0d0d] border border-zinc-800 focus:border-red-600 text-white placeholder-zinc-600 text-sm font-barlow px-4 py-3 outline-none transition-colors duration-200"
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block font-barlow-condensed text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-2">
+              Email Address <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="you@example.com"
+              class="w-full bg-[#0d0d0d] border border-zinc-800 focus:border-red-600 text-white placeholder-zinc-600 text-sm font-barlow px-4 py-3 outline-none transition-colors duration-200"
+            />
+          </div>
+
+          <!-- Subject -->
+          <div>
+            <label for="subject" class="block font-barlow-condensed text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-2">
+              Subject
+            </label>
+            <select
+              id="subject"
+              name="subject"
+              class="w-full bg-[#0d0d0d] border border-zinc-800 focus:border-red-600 text-white text-sm font-barlow px-4 py-3 outline-none transition-colors duration-200 appearance-none"
+              style="background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%2371717a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem;"
+            >
+              <option value="">Select a topic…</option>
+              <option value="order">Order / Tracking</option>
+              <option value="exchange">Exchange / Return</option>
+              <option value="sizing">Sizing Help</option>
+              <option value="wholesale">Wholesale / Bulk Order</option>
+              <option value="collaboration">Collaboration</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block font-barlow-condensed text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-2">
+              Message <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="5"
+              placeholder="Tell us how we can help…"
+              class="w-full bg-[#0d0d0d] border border-zinc-800 focus:border-red-600 text-white placeholder-zinc-600 text-sm font-barlow px-4 py-3 outline-none transition-colors duration-200 resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            id="submit-btn"
+            class="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm py-4 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(220,38,38,0.35)] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg id="btn-icon-send" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/>
+            </svg>
+            <svg id="btn-icon-spin" class="h-4 w-4 animate-spin hidden" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            <span id="btn-text">Send Message</span>
+          </button>
+
+          <!-- Success / Error messages -->
+          <div id="form-success" class="hidden items-center gap-3 bg-green-600/10 border border-green-600/30 text-green-400 text-sm font-barlow px-4 py-3">
+            <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+            Message sent! We'll get back to you within 24 hours.
+          </div>
+          <div id="form-error" class="hidden items-center gap-3 bg-red-600/10 border border-red-600/30 text-red-400 text-sm font-barlow px-4 py-3">
+            <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/>
+            </svg>
+            Something went wrong. Please WhatsApp us directly instead.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────── -->
+  <section class="border-t border-white/5 bg-[#0d0d0d] py-24">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="font-barlow-condensed text-xs font-semibold tracking-[0.3em] text-red-500 uppercase mb-3">Got Questions?</p>
+        <h2 class="font-bebas text-5xl sm:text-6xl text-white tracking-wide">FAQ</h2>
+      </div>
+      <div class="divide-y divide-white/5">
+        {faqs.map(({ q, a }) => (
+          <details class="group py-5">
+            <summary class="flex items-start justify-between gap-4 cursor-pointer list-none">
+              <h3 class="font-barlow font-semibold text-sm sm:text-base text-zinc-200 leading-snug">{q}</h3>
+              <div class="shrink-0 flex items-center justify-center h-6 w-6 border border-zinc-700 group-open:border-red-600 text-zinc-500 group-open:text-red-500 group-open:rotate-45 transition-all duration-300 mt-0.5">
+                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+              </div>
+            </summary>
+            <p class="mt-4 text-sm text-zinc-500 leading-relaxed pl-0 pr-10">{a}</p>
+          </details>
+        ))}
+      </div>
+
+      <!-- Still need help -->
+      <div class="mt-14 text-center border border-white/5 bg-[#111] px-8 py-10">
+        <p class="font-bebas text-3xl text-white tracking-wide mb-2">Still Have Questions?</p>
+        <p class="text-zinc-500 text-sm mb-6">The fastest way to reach us is always WhatsApp.</p>
+        <a
+          href="https://wa.me/91XXXXXXXXXXX?text=Hi%20DARK%20Fashion%2C%20I%20have%20a%20question!"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-3 bg-green-700 hover:bg-green-600 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300"
+        >
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
+
+<!-- ── CLIENT SCRIPTS ───────────────────────────────────────────── -->
+<script>
+  const form      = document.getElementById('contact-form')     as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn')       as HTMLButtonElement;
+  const btnText   = document.getElementById('btn-text')         as HTMLSpanElement;
+  const iconSend  = document.getElementById('btn-icon-send')    as SVGElement;
+  const iconSpin  = document.getElementById('btn-icon-spin')    as SVGElement;
+  const success   = document.getElementById('form-success')     as HTMLDivElement;
+  const error     = document.getElementById('form-error')       as HTMLDivElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Loading state
+    submitBtn.disabled = true;
+    btnText.textContent = 'Sending…';
+    iconSend.classList.add('hidden');
+    iconSpin.classList.remove('hidden');
+    success.classList.add('hidden');
+    error.classList.add('hidden');
+
+    try {
+      const res = await fetch(form.action, {
+        method:  'POST',
+        body:    new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        form.reset();
+        success.classList.remove('hidden');
+        success.classList.add('flex');
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      error.classList.remove('hidden');
+      error.classList.add('flex');
+    } finally {
+      submitBtn.disabled = false;
+      btnText.textContent = 'Send Message';
+      iconSend.classList.remove('hidden');
+      iconSpin.classList.add('hidden');
+    }
+  });
+</script>
