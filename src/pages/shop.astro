@@ -37,23 +37,23 @@ const maxPrice = Math.max(...prices);
 >
 
   <!-- ── PAGE HEADER ────────────────────────────────────────────── -->
-  <section class="relative bg-[#080808] border-b border-white/5 py-14 overflow-hidden">
+  <section class="relative bg-[#080808] border-b border-[var(--color-border)] py-14 overflow-hidden">
     <div class="absolute inset-0 opacity-[0.03]"
       style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 80px 80px;">
     </div>
-    <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-red-950/10 to-transparent pointer-events-none"></div>
+    <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-[var(--color-accent)]/10 to-transparent pointer-events-none"></div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Breadcrumb -->
       <nav class="flex items-center gap-2 text-xs font-barlow-condensed font-semibold tracking-widest uppercase text-zinc-600 mb-6">
-        <a href={`${base}/`} class="hover:text-red-400 transition-colors">Home</a>
+        <a href={`${base}/`} class="hover:text-[var(--color-accent)] transition-colors">Home</a>
         <span>›</span>
         <span class="text-zinc-400">Shop</span>
       </nav>
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <h1 class="font-bebas text-6xl sm:text-7xl text-white tracking-wide leading-none mb-2">All Products</h1>
-          <p class="text-sm text-zinc-500 font-barlow">
-            <span class="text-white font-semibold">{products.length}</span> items &nbsp;·&nbsp;
+          <h1 class="font-bebas text-6xl sm:text-7xl text-[var(--color-text-main)] tracking-wide leading-none mb-2">All Products</h1>
+          <p class="text-sm text-[var(--color-text-muted)] font-barlow">
+            <span class="text-[var(--color-text-main)] font-semibold">{products.length}</span> items &nbsp;·&nbsp;
             <span class="text-green-400">{totalInStock} in stock</span>
             {totalOutOfStock > 0 && (
               <span> &nbsp;·&nbsp; <span class="text-zinc-600">{totalOutOfStock} out of stock</span></span>
@@ -64,14 +64,14 @@ const maxPrice = Math.max(...prices);
         <div class="flex items-center gap-2 shrink-0">
           <button id="grid-view-btn"
             aria-label="Grid view"
-            class="view-btn active-view flex items-center justify-center h-9 w-9 border border-red-600 bg-red-600/10 text-red-500 transition-all duration-200">
+            class="view-btn active-view flex items-center justify-center h-9 w-9 border border-[var(--color-accent)] bg-[var(--color-accent)]/10 text-[var(--color-accent)] transition-all duration-200">
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/>
             </svg>
           </button>
           <button id="list-view-btn"
             aria-label="List view"
-            class="view-btn flex items-center justify-center h-9 w-9 border border-zinc-700 text-zinc-500 hover:border-zinc-400 hover:text-white transition-all duration-200">
+            class="view-btn flex items-center justify-center h-9 w-9 border border-zinc-700 text-zinc-500 hover:border-zinc-400 hover:text-[var(--color-text-main)] transition-all duration-200">
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"/>
             </svg>
@@ -90,9 +90,9 @@ const maxPrice = Math.max(...prices);
 
         <!-- Mobile filter toggle -->
         <button id="filter-toggle"
-          class="lg:hidden w-full flex items-center justify-between bg-[#111] border border-white/5 px-5 py-3.5 text-sm font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-white mb-4">
+          class="lg:hidden w-full flex items-center justify-between bg-[var(--color-surface)] border border-[var(--color-border)] px-5 py-3.5 text-sm font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-[var(--color-text-main)] mb-4">
           <span class="flex items-center gap-2">
-            <svg class="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <svg class="h-4 w-4 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"/>
             </svg>
             Filters
@@ -106,7 +106,7 @@ const maxPrice = Math.max(...prices);
 
           <!-- Category filter -->
           <div>
-            <h3 class="font-bebas text-lg text-white tracking-widest mb-4 flex items-center gap-2">
+            <h3 class="font-bebas text-lg text-[var(--color-text-main)] tracking-widest mb-4 flex items-center gap-2">
               Category
               <span class="h-px flex-1 bg-white/5"></span>
             </h3>
@@ -121,15 +121,15 @@ const maxPrice = Math.max(...prices);
                       class:list={[
                         'category-filter w-full flex items-center justify-between px-3 py-2.5 text-sm font-barlow transition-all duration-200',
                         i === 0
-                          ? 'bg-red-600/10 border-l-2 border-red-600 text-white font-semibold'
-                          : 'text-zinc-500 hover:text-white hover:bg-white/5 border-l-2 border-transparent',
+                          ? 'bg-[var(--color-accent)]/10 border-l-2 border-[var(--color-accent)] text-[var(--color-text-main)] font-semibold'
+                          : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] hover:bg-white/5 border-l-2 border-transparent',
                       ]}
                       data-filter={cat === 'All' ? 'all' : cat}
                     >
                       <span>{cat}</span>
                       <span class:list={[
                         'font-barlow-condensed text-xs tracking-wider',
-                        i === 0 ? 'text-red-400' : 'text-zinc-700',
+                        i === 0 ? 'text-[var(--color-accent)]' : 'text-zinc-700',
                       ]}>{count}</span>
                     </button>
                   </li>
@@ -140,7 +140,7 @@ const maxPrice = Math.max(...prices);
 
           <!-- Price range -->
           <div>
-            <h3 class="font-bebas text-lg text-white tracking-widest mb-4 flex items-center gap-2">
+            <h3 class="font-bebas text-lg text-[var(--color-text-main)] tracking-widest mb-4 flex items-center gap-2">
               Price Range
               <span class="h-px flex-1 bg-white/5"></span>
             </h3>
@@ -152,18 +152,18 @@ const maxPrice = Math.max(...prices);
                 max={maxPrice}
                 value={maxPrice}
                 step="100"
-                class="w-full h-1 bg-zinc-800 rounded-none appearance-none cursor-pointer accent-red-600"
+                class="w-full h-1 bg-zinc-800 rounded-none appearance-none cursor-pointer accent-[var(--color-accent)]"
               />
               <div class="flex justify-between mt-2 text-xs font-barlow-condensed text-zinc-500">
                 <span>{formatPrice(minPrice)}</span>
-                <span id="price-display" class="text-white font-semibold">{formatPrice(maxPrice)}</span>
+                <span id="price-display" class="text-[var(--color-text-main)] font-semibold">{formatPrice(maxPrice)}</span>
               </div>
             </div>
           </div>
 
           <!-- Availability -->
           <div>
-            <h3 class="font-bebas text-lg text-white tracking-widest mb-4 flex items-center gap-2">
+            <h3 class="font-bebas text-lg text-[var(--color-text-main)] tracking-widest mb-4 flex items-center gap-2">
               Availability
               <span class="h-px flex-1 bg-white/5"></span>
             </h3>
@@ -179,9 +179,9 @@ const maxPrice = Math.max(...prices);
                     name="availability"
                     value={value}
                     checked={value === 'all'}
-                    class="availability-radio w-4 h-4 accent-red-600 cursor-pointer"
+                    class="availability-radio w-4 h-4 accent-[var(--color-accent)] cursor-pointer"
                   />
-                  <span class="text-sm text-zinc-500 group-hover:text-white transition-colors flex-1">{label}</span>
+                  <span class="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-text-main)] transition-colors flex-1">{label}</span>
                   <span class="text-xs font-barlow-condensed text-zinc-700">{count}</span>
                 </label>
               ))}
@@ -190,7 +190,7 @@ const maxPrice = Math.max(...prices);
 
           <!-- Sort (sidebar on desktop) -->
           <div>
-            <h3 class="font-bebas text-lg text-white tracking-widest mb-4 flex items-center gap-2">
+            <h3 class="font-bebas text-lg text-[var(--color-text-main)] tracking-widest mb-4 flex items-center gap-2">
               Sort By
               <span class="h-px flex-1 bg-white/5"></span>
             </h3>
@@ -206,8 +206,8 @@ const maxPrice = Math.max(...prices);
                   class:list={[
                     'sort-btn w-full text-left px-3 py-2 text-sm font-barlow transition-all duration-200',
                     i === 0
-                      ? 'text-white font-semibold bg-white/5'
-                      : 'text-zinc-500 hover:text-white hover:bg-white/5',
+                      ? 'text-[var(--color-text-main)] font-semibold bg-white/5'
+                      : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] hover:bg-white/5',
                   ]}
                   data-sort={value}
                 >
@@ -220,7 +220,7 @@ const maxPrice = Math.max(...prices);
           <!-- Clear filters -->
           <button
             id="clear-filters"
-            class="w-full border border-zinc-800 text-zinc-600 hover:border-red-600 hover:text-red-400 text-xs font-barlow-condensed font-semibold tracking-[0.2em] uppercase py-3 transition-all duration-200"
+            class="w-full border border-zinc-800 text-zinc-600 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] text-xs font-barlow-condensed font-semibold tracking-[0.2em] uppercase py-3 transition-all duration-200"
           >
             Clear All Filters
           </button>
@@ -232,9 +232,9 @@ const maxPrice = Math.max(...prices);
       <div class="flex-1 min-w-0">
 
         <!-- Active filters + result count bar -->
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-5 border-b border-white/5">
-          <div id="result-count" class="font-barlow text-sm text-zinc-500">
-            Showing <span id="count-display" class="text-white font-semibold">{products.length}</span> products
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-5 border-b border-[var(--color-border)]">
+          <div id="result-count" class="font-barlow text-sm text-[var(--color-text-muted)]">
+            Showing <span id="count-display" class="text-[var(--color-text-main)] font-semibold">{products.length}</span> products
           </div>
           <div id="active-filters" class="flex flex-wrap gap-2"></div>
         </div>
@@ -249,7 +249,7 @@ const maxPrice = Math.max(...prices);
             const href = `${base}/products/${product.id}`;
             return (
               <article
-                class="product-card group relative bg-[#111] border border-white/5 overflow-hidden hover:border-red-600/30 transition-all duration-500"
+                class="product-card group relative bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden hover:border-[var(--color-accent)]/30 transition-all duration-500"
                 data-category={category}
                 data-price={price}
                 data-name={name}
@@ -271,12 +271,12 @@ const maxPrice = Math.max(...prices);
                   <!-- Badges -->
                   <div class="absolute top-2.5 left-2.5 flex flex-col gap-1.5">
                     {featured && (
-                      <span class="bg-red-600 text-white text-[9px] font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-2 py-1 leading-none">
+                      <span class="bg-[var(--color-accent)] text-[#050505] text-[9px] font-barlow-condensed font-bold tracking-[0.15em] uppercase px-2 py-1 leading-none">
                         Featured
                       </span>
                     )}
                     {!inStock && (
-                      <span class="bg-black/80 text-zinc-400 text-[9px] font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-2 py-1 leading-none border border-zinc-700">
+                      <span class="bg-[#050505]/80 text-[var(--color-text-muted)] text-[9px] font-barlow-condensed font-semibold tracking-[0.15em] uppercase px-2 py-1 leading-none border border-[var(--color-border)]">
                         Sold Out
                       </span>
                     )}
@@ -285,7 +285,7 @@ const maxPrice = Math.max(...prices);
                   <!-- Quick view on hover -->
                   <div class="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 p-2.5">
                     <a href={href}
-                      class="w-full flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.12em] uppercase text-[11px] py-2.5 transition-colors duration-200">
+                      class="w-full flex items-center justify-center gap-1.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-dim)] text-[#050505] font-barlow-condensed font-bold tracking-[0.12em] uppercase text-[11px] py-2.5 transition-colors duration-200">
                       View Product
                       <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -298,12 +298,12 @@ const maxPrice = Math.max(...prices);
                 <div class="p-3">
                   <p class="text-[10px] text-zinc-600 font-barlow-condensed tracking-widest uppercase mb-1">{category}</p>
                   <a href={href}>
-                    <h2 class="font-barlow font-semibold text-xs sm:text-sm text-zinc-200 group-hover:text-red-400 transition-colors duration-200 line-clamp-2 leading-snug mb-2">
+                    <h2 class="font-barlow font-semibold text-xs sm:text-sm text-zinc-200 group-hover:text-[var(--color-accent)] transition-colors duration-200 line-clamp-2 leading-snug mb-2">
                       {name}
                     </h2>
                   </a>
                   <div class="flex items-center justify-between">
-                    <span class="font-bebas text-lg text-white tracking-wider">{formatPrice(price)}</span>
+                    <span class="font-bebas text-lg text-[var(--color-text-main)] tracking-wider">{formatPrice(price)}</span>
                     <span class:list={[
                       'text-[9px] font-barlow-condensed font-semibold tracking-wider uppercase',
                       inStock ? 'text-green-500' : 'text-zinc-600',
@@ -318,7 +318,7 @@ const maxPrice = Math.max(...prices);
         </div>
 
         <!-- List view (hidden by default) -->
-        <div id="product-list" class="hidden divide-y divide-white/5">
+        <div id="product-list" class="hidden divide-y divide-[var(--color-border)]">
           {products.map((product) => {
             const { name, price, category, image, inStock, description, featured } = product.data;
             const href = `${base}/products/${product.id}`;
@@ -340,7 +340,7 @@ const maxPrice = Math.max(...prices);
                   />
                   {!inStock && (
                     <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
-                      <span class="text-[9px] text-zinc-400 font-barlow-condensed tracking-widest uppercase">Sold Out</span>
+                      <span class="text-[9px] text-[var(--color-text-muted)] font-barlow-condensed tracking-widest uppercase">Sold Out</span>
                     </div>
                   )}
                 </a>
@@ -348,12 +348,12 @@ const maxPrice = Math.max(...prices);
                   <div>
                     <p class="text-[10px] text-zinc-600 font-barlow-condensed tracking-widest uppercase mb-1">{category}</p>
                     <a href={href}>
-                      <h2 class="font-barlow font-semibold text-sm sm:text-base text-zinc-200 group-hover:text-red-400 transition-colors leading-snug mb-2">{name}</h2>
+                      <h2 class="font-barlow font-semibold text-sm sm:text-base text-zinc-200 group-hover:text-[var(--color-accent)] transition-colors leading-snug mb-2">{name}</h2>
                     </a>
-                    <p class="text-xs text-zinc-500 leading-relaxed line-clamp-2 hidden sm:block">{description}</p>
+                    <p class="text-xs text-[var(--color-text-muted)] leading-relaxed line-clamp-2 hidden sm:block">{description}</p>
                   </div>
                   <div class="flex items-center gap-4 mt-3">
-                    <span class="font-bebas text-xl text-white tracking-wider">{formatPrice(price)}</span>
+                    <span class="font-bebas text-xl text-[var(--color-text-main)] tracking-wider">{formatPrice(price)}</span>
                     <span class:list={[
                       'text-[10px] font-barlow-condensed font-semibold tracking-wider uppercase',
                       inStock ? 'text-green-400' : 'text-zinc-600',
@@ -361,7 +361,7 @@ const maxPrice = Math.max(...prices);
                       {inStock ? '● In Stock' : '○ Sold Out'}
                     </span>
                     <a href={href}
-                      class="ml-auto hidden sm:inline-flex items-center gap-1.5 border border-zinc-700 hover:border-red-600 text-zinc-500 hover:text-red-400 font-barlow-condensed text-xs font-semibold tracking-[0.15em] uppercase px-4 py-2 transition-all duration-200">
+                      class="ml-auto hidden sm:inline-flex items-center gap-1.5 border border-zinc-700 hover:border-[var(--color-accent)] text-zinc-500 hover:text-[var(--color-accent)] font-barlow-condensed text-xs font-semibold tracking-[0.15em] uppercase px-4 py-2 transition-all duration-200">
                       View
                       <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -379,10 +379,10 @@ const maxPrice = Math.max(...prices);
           <svg class="h-16 w-16 text-zinc-800 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803a7.5 7.5 0 0 0 10.607 0Z"/>
           </svg>
-          <p class="font-bebas text-4xl text-zinc-700 tracking-wide mb-2">No Products Found</p>
+          <p class="font-bebas text-4xl text-[var(--color-text-muted)] tracking-wide mb-2">No Products Found</p>
           <p class="text-sm text-zinc-600 mb-6">Try adjusting your filters or clearing them.</p>
           <button id="empty-clear-btn"
-            class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.2em] uppercase text-sm px-6 py-3 transition-all duration-200">
+            class="inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-dim)] text-[#050505] font-barlow-condensed font-bold tracking-[0.2em] uppercase text-sm px-6 py-3 transition-all duration-200">
             Clear Filters
           </button>
         </div>
@@ -392,11 +392,11 @@ const maxPrice = Math.max(...prices);
   </div>
 
   <!-- ── WHATSAPP STRIP ─────────────────────────────────────────── -->
-  <div class="border-t border-white/5 bg-[#0d0d0d] py-10 mt-10">
+  <div class="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-10 mt-10">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
       <div>
-        <p class="font-bebas text-2xl text-white tracking-wide">Can't find what you're looking for?</p>
-        <p class="text-sm text-zinc-500 mt-1">Message us on WhatsApp — we may have it in store even if it's not listed here.</p>
+        <p class="font-bebas text-2xl text-[var(--color-text-main)] tracking-wide">Can't find what you're looking for?</p>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Message us on WhatsApp — we may have it in store even if it's not listed here.</p>
       </div>
       <a
         href="https://wa.me/91XXXXXXXXXXX?text=Hi%20DARK%20Fashion%2C%20I%27m%20looking%20for%20something%20specific."
@@ -527,7 +527,7 @@ const maxPrice = Math.max(...prices);
 
     chips.forEach(({ label, clear }) => {
       const chip = document.createElement('button');
-      chip.className = 'flex items-center gap-1.5 bg-red-600/10 border border-red-600/30 text-red-400 text-[11px] font-barlow-condensed font-semibold tracking-wider uppercase px-2.5 py-1.5 hover:bg-red-600/20 transition-colors';
+      chip.className = 'flex items-center gap-1.5 bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/30 text-[var(--color-accent)] text-[11px] font-barlow-condensed font-semibold tracking-wider uppercase px-2.5 py-1.5 hover:bg-[var(--color-accent)]/20 transition-colors';
       chip.innerHTML = `${label} <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>`;
       chip.addEventListener('click', clear);
       activeFiltersEl.appendChild(chip);
@@ -537,13 +537,13 @@ const maxPrice = Math.max(...prices);
   function setActiveCategory(val: string) {
     document.querySelectorAll<HTMLButtonElement>('.category-filter').forEach(btn => {
       const isActive = btn.dataset.filter === val;
-      btn.classList.toggle('bg-red-600/10', isActive);
+      btn.classList.toggle('bg-[var(--color-accent)]/10', isActive);
       btn.classList.toggle('border-l-2', true);
-      btn.classList.toggle('border-red-600', isActive);
+      btn.classList.toggle('border-[var(--color-accent)]', isActive);
       btn.classList.toggle('border-transparent', !isActive);
-      btn.classList.toggle('text-white', isActive);
+      btn.classList.toggle('text-[var(--color-text-main)]', isActive);
       btn.classList.toggle('font-semibold', isActive);
-      btn.classList.toggle('text-zinc-500', !isActive);
+      btn.classList.toggle('text-[var(--color-text-muted)]', !isActive);
     });
   }
 
@@ -554,10 +554,10 @@ const maxPrice = Math.max(...prices);
     activePriceMax = Infinity;
     setActiveCategory('all');
     document.querySelectorAll<HTMLButtonElement>('.sort-btn').forEach((b, i) => {
-      b.classList.toggle('text-white', i === 0);
+      b.classList.toggle('text-[var(--color-text-main)]', i === 0);
       b.classList.toggle('font-semibold', i === 0);
       b.classList.toggle('bg-white/5', i === 0);
-      b.classList.toggle('text-zinc-500', i !== 0);
+      b.classList.toggle('text-[var(--color-text-muted)]', i !== 0);
     });
     (document.querySelector('.availability-radio[value="all"]') as HTMLInputElement).checked = true;
     priceRange.value = priceRange.max;
@@ -579,10 +579,10 @@ const maxPrice = Math.max(...prices);
     btn.addEventListener('click', () => {
       activeSort = btn.dataset.sort ?? 'featured';
       document.querySelectorAll<HTMLButtonElement>('.sort-btn').forEach(b => {
-        b.classList.toggle('text-white', b === btn);
+        b.classList.toggle('text-[var(--color-text-main)]', b === btn);
         b.classList.toggle('font-semibold', b === btn);
         b.classList.toggle('bg-white/5', b === btn);
-        b.classList.toggle('text-zinc-500', b !== btn);
+        b.classList.toggle('text-[var(--color-text-muted)]', b !== btn);
       });
       applyFilters();
     });
@@ -614,18 +614,18 @@ const maxPrice = Math.max(...prices);
   gridBtn.addEventListener('click', () => {
     gridEl.classList.remove('hidden');
     listEl.classList.add('hidden');
-    gridBtn.classList.add('border-red-600', 'bg-red-600/10', 'text-red-500');
+    gridBtn.classList.add('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/10', 'text-[var(--color-accent)]');
     gridBtn.classList.remove('border-zinc-700', 'text-zinc-500');
-    listBtn.classList.remove('border-red-600', 'bg-red-600/10', 'text-red-500');
+    listBtn.classList.remove('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/10', 'text-[var(--color-accent)]');
     listBtn.classList.add('border-zinc-700', 'text-zinc-500');
   });
 
   listBtn.addEventListener('click', () => {
     listEl.classList.remove('hidden');
     gridEl.classList.add('hidden');
-    listBtn.classList.add('border-red-600', 'bg-red-600/10', 'text-red-500');
+    listBtn.classList.add('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/10', 'text-[var(--color-accent)]');
     listBtn.classList.remove('border-zinc-700', 'text-zinc-500');
-    gridBtn.classList.remove('border-red-600', 'bg-red-600/10', 'text-red-500');
+    gridBtn.classList.remove('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/10', 'text-[var(--color-accent)]');
     gridBtn.classList.add('border-zinc-700', 'text-zinc-500');
   });
 
@@ -647,14 +647,14 @@ const maxPrice = Math.max(...prices);
     appearance: none;
     width: 16px;
     height: 16px;
-    background: #dc2626;
+    background: var(--color-accent);
     cursor: pointer;
     border-radius: 0;
   }
   input[type='range']::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background: #dc2626;
+    background: var(--color-accent);
     cursor: pointer;
     border-radius: 0;
     border: none;
