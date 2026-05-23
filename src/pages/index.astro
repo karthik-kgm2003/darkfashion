@@ -25,8 +25,8 @@ const categories = [...new Set(products.map(p => p.data.category))];
 ---
 
 <MainLayout
-  title="DARK Fashion & Trends — Premium Streetwear, Padinjarangadi"
-  description="Shop the latest streetwear drops from DARK Fashion & Trends. Oversized tees, cargo pants, bombers and more. Delivered across Kerala."
+  title="DARK Fashion & Trends — Affordable everydaywear in Padinjarangadi since 2018"
+  description="Shop the latest trends and collections from DARK Fashion & Trends. Chudidhar, Kurti, Pyjamas, Palazzo, Nighties, Sarees and more."
 >
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
@@ -66,8 +66,8 @@ const categories = [...new Set(products.map(p => p.data.category))];
 
         <!-- Subheading -->
         <p class="text-base sm:text-lg text-zinc-400 font-barlow font-light leading-relaxed max-w-md mb-10 animate-[fadeUp_0.7s_0.2s_ease_both_backwards]">
-          Premium streetwear crafted for the streets of Kerala.
-          Drop-shoulder cuts, utility silhouettes, and cultural edges — every piece tells a story.
+          Affordable dailywear for the streets of Kerala.
+         Sold with love and care — every piece tells a story.
         </p>
 
         <!-- CTAs -->
@@ -76,7 +76,7 @@ const categories = [...new Set(products.map(p => p.data.category))];
             href="#products"
             class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-barlow-condensed font-semibold tracking-[0.15em] uppercase text-sm px-8 py-4 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_8px_30px_rgba(220,38,38,0.4)]"
           >
-            Shop New Drops
+            Shop New Collections
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
@@ -92,9 +92,9 @@ const categories = [...new Set(products.map(p => p.data.category))];
         <!-- Stats row -->
         <div class="flex flex-wrap gap-8 mt-16 animate-[fadeUp_0.7s_0.4s_ease_both_backwards]">
           {[
-            { val: '500+', label: 'Happy Customers' },
+            { val: '1000+', label: 'Happy Customers' },
             { val: '50+',  label: 'Unique Styles'    },
-            { val: '2+',   label: 'Years in Kerala'  },
+            { val: '8+',   label: 'Years in Kerala'  },
           ].map(({ val, label }) => (
             <div class="flex flex-col">
               <span class="font-bebas text-3xl text-white tracking-wider">{val}</span>
@@ -129,8 +129,8 @@ const categories = [...new Set(products.map(p => p.data.category))];
     <div class="flex whitespace-nowrap animate-[ticker_25s_linear_infinite]">
       {Array.from({ length: 6 }).map(() => (
         <span class="inline-flex items-center gap-8 font-bebas text-white text-xl tracking-[0.2em] pr-16">
-          NEW DROP &nbsp;·&nbsp; PADINJARANGADI &nbsp;·&nbsp; DARK FASHION &nbsp;·&nbsp;
-          STREETWEAR &nbsp;·&nbsp; KERALA &nbsp;·&nbsp; SHOP NOW &nbsp;·&nbsp;
+          NEW Collections &nbsp;·&nbsp; PADINJARANGADI &nbsp;·&nbsp; DARK FASHION &nbsp;·&nbsp;
+          Everyday wear &nbsp;·&nbsp; KERALA &nbsp;·&nbsp; SHOP NOW &nbsp;·&nbsp;
         </span>
       ))}
     </div>
@@ -275,7 +275,7 @@ const categories = [...new Set(products.map(p => p.data.category))];
         {
           icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"/>`,
           title: 'Drop Alerts',
-          desc:  'WhatsApp us to join the DARK drop notification list.',
+          desc:  'WhatsApp us to join the DARK notification list.',
         },
       ].map(({ icon, title, desc }) => (
         <div class="flex flex-col items-start gap-4">
@@ -298,7 +298,7 @@ const categories = [...new Set(products.map(p => p.data.category))];
       <p class="text-xs text-red-500 font-barlow-condensed font-semibold tracking-[0.3em] uppercase mb-4">Stay in the Loop</p>
       <h2 class="font-bebas text-5xl sm:text-7xl text-white tracking-wide mb-4">Get Drop Alerts</h2>
       <p class="text-zinc-500 max-w-md mx-auto text-sm leading-relaxed mb-10">
-        Be the first to know when new streetwear drops land. No spam — just the heat, straight to your WhatsApp.
+        Be the first to know when new collections and discounts drops. No spam - just the heat, straight to your WhatsApp.
       </p>
       <a
         href="https://wa.me/919400000000?text=Hey%20DARK%2C%20add%20me%20to%20the%20drop%20list!"
